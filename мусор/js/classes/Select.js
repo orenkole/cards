@@ -1,28 +1,30 @@
 import HtmlElement from "./HtmlElement.js ";
 
 export default class Select extends HtmlElement {
-  constructor({
-    tagName = "select",
+  constructor({tagName = "select",
     classes = [],
-    // attributes = [],
-    attributes = {},
+    attributes = [],
     text = "",
     // placeholder = "",
     // name = "",
-    values = [],
+    values = []
   } = {}) {
-    super({ tagName, classes, attributes, text });
+    super({tagName,
+      classes,
+      attributes,
+      text
+    });
     // this.element.placeholder = placeholder;
     // this.element.name = name;
     this.values = values;
     this.createOptions();
   }
   createOptions() {
-    this.values.forEach((value) => {
+    this.values.forEach(value => {
       const optionElement = document.createElement("option");
       optionElement.value = value;
       optionElement.text = value;
       this.element.append(optionElement);
-    });
+    })
   }
 }

@@ -4,7 +4,8 @@ export default class Button extends HtmlElement {
   constructor({
     tagName = "button",
     classes = [],
-    attributes = [],
+    // attributes = [],
+    attributes = {},
     id = "",
     text = "",
   } = {}) {

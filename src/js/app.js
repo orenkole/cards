@@ -4,7 +4,6 @@ import { createBtnElement, createBtnObj } from "./components/createBtnObj.js";
 import { publish, state } from "./state/state.js";
 import { createVisitModalObj } from "./components/createVisitModal.js";
 
-// const root = document.querySelector("#root");
 const buttonsHeaderPlacement = document.getElementById("buttons");
 
 if (state.token) {

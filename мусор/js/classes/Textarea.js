@@ -1,18 +1,20 @@
 import HtmlElement from "./HtmlElement.js ";
 
 export default class Textarea extends HtmlElement {
-  constructor({
-    tagName = "textarea",
+  constructor({tagName = "textarea",
     classes = [],
-    // attributes = [],
-    attributes = {},
+    attributes = [],
     text = "",
     placeholder = "",
     name = "",
     rows,
-    cols,
+    cols
   } = {}) {
-    super({ tagName, classes, attributes, text });
+    super({tagName,
+      classes,
+      attributes,
+      text
+    });
     this.element.placeholder = placeholder;
     this.element.name = name;
     this.element.rows = rows;

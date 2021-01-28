@@ -1,18 +1,20 @@
 import HtmlElement from "./HtmlElement.js ";
 
 export default class Input extends HtmlElement {
-  constructor({
-    tagName = "input",
+  constructor({tagName = "input",
     classes = [],
-    // attributes = [],
-    attributes = {},
+    attributes = [],
     text = "",
     placeholder = "",
     name = "",
     type = "",
-    value = "",
+    value = ""
   } = {}) {
-    super({ tagName, classes, attributes, text });
+    super({tagName,
+      classes,
+      attributes,
+      text
+    });
     this.element.placeholder = placeholder;
     this.element.name = name;
     this.element.type = type;

@@ -56,7 +56,7 @@ a:link {
 /* вот здесь включаем и выключаем кнопку */
 #create {
   display: none;
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
 .header_bg {
