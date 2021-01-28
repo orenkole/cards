@@ -23,6 +23,7 @@
     />
     <link rel="stylesheet" href="styles/norm.css" />
     <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,400;1,500&display=swap"
@@ -32,14 +33,15 @@
   </head>
   <body>
     <header>
+      <div id="root"></div>
+
       <nav>
         <div class="header">
           <a href="#!">
             <span class="logo__name">Megaclinic</span>
           </a>
-          <div class="buttons">
-            <button id="login">Login</button
-            ><button id="create">Create Card</button>
+          <div id="buttons" class="buttons">
+            <!-- <button id="login">Вход</button><button id="create">Создать</button> -->
           </div>
         </div>
       </nav>
@@ -104,6 +106,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="scripts/script.js"></script>
+    <script src="./js/app.js" type="module"></script>
   </body>
 </html>
