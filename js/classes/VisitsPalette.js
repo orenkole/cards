@@ -35,6 +35,7 @@ export class VisitsPalette extends HtmlElement {
     const getAllVisitsRequest = new Request()
     const allVisitsJson = await getAllVisitsRequest.sendRequest({path: "", method: "GET"});
     this.allVisits = JSON.parse(allVisitsJson);
+    console.log("ALL VISITS: ", this.allVisits);
   }
 
   async createVisitCards() {

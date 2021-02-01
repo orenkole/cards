@@ -19,6 +19,7 @@ async function addVisitToPalette(e) {
 	const visitObj = {};
 	const formData = new FormData(e.target);
 	formData.forEach((value, key) => {visitObj[key] = value});
+	console.log("visitObj: ", visitObj);
 	visitsPalette.addVisit(visitObj);
 	// hide form
 	createVisitForm.element.reset();
