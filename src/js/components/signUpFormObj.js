@@ -4,8 +4,10 @@ import Input from "../classes/Input.js";
 import { sendLoginRequest } from "../queries/sendLoginRequest.js";
 import { signUpBtnObj, signUpBtnElement } from "./signUpBtnObj.js";
 
+import { signUpFormModalElement } from "./signUpFormModal.js";
+
 // render sign up form
-export const signUpFormObj = new Form();
+export const signUpFormObj = new Form({ classes: ["sign-up-form"] });
 export const signUpFormElement = signUpFormObj.element;
 
 const InputEmailObj = new Input({
@@ -50,5 +52,9 @@ const onLogin = (token) => {
     publish({ event: "loggedIn" });
     InputEmailElement.value = "";
     InputPasswordElement.value = "";
+
+    // close modal window
+    let event = new Event("click");
+    document.getElementById("exampleModal").dispatchEvent(event);
   }
 };

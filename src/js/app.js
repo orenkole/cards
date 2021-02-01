@@ -1,7 +1,10 @@
 import { signUpBtnObj, signUpBtnElement } from "./components/signUpBtnObj.js";
-import { signUpFormModalObj } from "./components/signUpFormModal.js";
+// import { signUpFormModalObj } from "./components/signUpFormModal.js";
 
-import { signUpModalWindow } from "./components/signUpFormModal.js";
+import {
+  signUpModalWindow,
+  createModal,
+} from "./components/signUpFormModal.js";
 
 import { createBtnElement, createBtnObj } from "./components/createBtnObj.js";
 import { publish, state } from "./state/state.js";
@@ -14,14 +17,13 @@ if (state.token) {
 }
 
 signUpBtnObj.render(buttonsHeaderPlacement, "afterbegin");
+signUpModalWindow.render(buttonsHeaderPlacement, "afterbegin");
+createModal();
 
-signUpBtnElement.addEventListener("click", signUpFormModalObj.openModal);
-
-// not working
-signUpModalWindow.render(signUpBtnObj, "afterbegin");
+// signUpBtnElement.addEventListener("click", signUpFormModalObj.openModal);
 
 createBtnObj.render(buttonsHeaderPlacement, "afterbegin");
 createBtnElement.addEventListener("click", createVisitModalObj.openModal);
 
-signUpFormModalObj.render(buttonsHeaderPlacement, "beforeend");
+// signUpFormModalObj.render(buttonsHeaderPlacement, "beforeend");
 createVisitModalObj.render(buttonsHeaderPlacement, "beforeend");
