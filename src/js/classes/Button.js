@@ -4,12 +4,15 @@ export default class Button extends HtmlElement {
   constructor({
     tagName = "button",
     classes = [],
-    // attributes = [],
     attributes = {},
-    id = "",
     text = "",
   } = {}) {
-    super({ tagName, classes, attributes, text, id });
+    super({
+      tagName,
+      classes,
+      attributes,
+      text,
+    });
   }
   handlePress(handler) {
     this.element.addEventListener("click", handler);

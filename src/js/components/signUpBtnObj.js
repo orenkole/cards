@@ -3,7 +3,14 @@ import Button from "../classes/Button.js";
 
 export const signUpBtnObj = new Button({
   text: "Вход",
-  id: "login",
+  attributes: {
+    id: "login",
+
+    type: "button",
+    classes: ["btn", "btn-primary"],
+    "data-bs-toggle": "modal",
+    "data-bs-target": "#exampleModal",
+  },
 });
 
 export const signUpBtnElement = signUpBtnObj.element;

@@ -4,7 +4,6 @@ export default class Input extends HtmlElement {
   constructor({
     tagName = "input",
     classes = [],
-    // attributes = [],
     attributes = {},
     text = "",
     placeholder = "",

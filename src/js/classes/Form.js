@@ -4,7 +4,6 @@ export default class Form extends HtmlElement {
   constructor({
     tagName = "form",
     classes = [],
-    // attributes = [],
     attributes = {},
     text = "",
   } = {}) {

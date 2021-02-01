@@ -1,16 +1,8 @@
 export default class HtmlElement {
-  constructor({
-    tagName = "",
-    classes = [],
-    // attributes = [],
-    attributes = {},
-    id = "",
-    text = "",
-  }) {
+  constructor({ tagName = "", classes = [], attributes = {}, text = "" }) {
     this.tagName = tagName;
     this.classes = classes;
     this.attributes = attributes;
-    this.id = id;
     this.text = text;
     this.element;
     this.create();
@@ -18,20 +10,13 @@ export default class HtmlElement {
   create() {
     const element = document.createElement(this.tagName);
     element.classList.add(...this.classes);
-    element.id = this.id;
 
     if (Object.keys(this.attributes).length > 0) {
-      console.log(this.attributes);
-      // debugger;
+      // console.log(this.attributes);
       for (let key in this.attributes) {
         element.setAttribute(key, this.attributes[key]);
       }
     }
-
-    // this.attributes.forEach((attribute) => {
-    //   let [[attributeName, attributeValue]] = Object.entries(attribute);
-    //   element.setAttribute(attributeName, attributeValue);
-    // });
 
     element.textContent = this.text;
     this.element = element;

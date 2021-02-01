@@ -3,7 +3,9 @@ import Button from "../classes/Button.js";
 
 export const createBtnObj = new Button({
   text: "Создать",
-  id: "create",
+  attributes: {
+    id: "create",
+  },
 });
 export const createBtnElement = createBtnObj.element;
 
