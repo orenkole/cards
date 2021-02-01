@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/norm.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+<header>
+      <nav >
+        <div class="header"><a href="#!">
+          <span class="logo__name">Megaclinic</span>
+        </a><div class="buttons"><button class="btn btn-outline-light" id="login">Login</button>
+
+
+          <button type="button" class="btn btn-outline-light visually-hidden" id="create"  data-bs-target="#doctor_list">
+            Создать карточку
+           </button>
+
+           <!-- Modal -->
+           <div
+            class="modal fade" id="doctor_list" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Выбор Врача</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                  <select class="custom-select mb-3 col-4 dialog_doctor" onchange="confirmButton()">
+                 <option selected><b>-Врач-</b></option>
+                 <option value="1">Кардиолог</option>
+                 <option value="2">Стоматолог</option>
+                 <option value="3">Терапевт</option>
+               </select>
+               </div><div class="modal-footer">
+                 <button
+                   type="button"
+                   class="btn btn-secondary"
+                   data-bs-dismiss="modal"
+                 >
+                   Отмена
+                 </button>
+               </div></div>
+               </div>
+            </div>
+
+          <!-- <button id="create" class="btn btn-outline-light visually-hidden">Create Card</button> -->
+        </div></div>
+      </nav>  </header>
+
+      <div class="container d-flex justify-content-center mt-3">
+        <div class="input-group w-75">
+          <label class="search_icon"
+            ><svg              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-search"
+              viewbox="0 0 16 16"
+            >
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+              />
+            </svg>
+          </label>
+          <input
+            type="text"
+            aria-label="First name"
+            class="form-control"
+            placeholder="Поиск по карточкам"
+          /><select class="form-select" aria-label="Status">
+            <option selected>-Статус приема-</option>
+            <option value="1">Актуальный</option>
+            <option value="2">Закрытый</option>
+          </select>
+          <select class="form-select" aria-label="Urgency">
+            <option selected>-Срочность-</option>
+            <option value="1">Срочно</option>
+            <option value="2">Не срочно</option>
+          </select>
+          <input
+            type="submit"
+            class="btn btn-light btn-outline-secondary"
+            value="Send"
+          />
+        </div>
+      </div>
+    <section id="board" class="board container w-50 mt-5 d-flex "><p id="emptyBoard" draggable="true" class="board__inscription d-flex justify-content-center mt-3">No items have been added</p>
+      <!-- <div class="container d-flex justify-content-center mt-3">
+        <p>Карточек нет, пожалуйста залогиньтесь // заглушка</p>
+      </div> -->
+
+    </section>
+    <div class="header_bg"></div>
+    <!-- <div id="cards_section" class="container border border-secondary mt-5">
+      Тут будут карточки // заглушка
+    </div> -->
+
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js.js"></script>
+</body>
+</html>
