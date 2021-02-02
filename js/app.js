@@ -24,7 +24,7 @@ const token = localStorage.getItem("token");
 
 if (token) {
   createVisitBtn.render(headerContainer.element, "beforeend");
-  // тут я врезаюсь фильтром
+  // here adding filter
   SearchContainer.render(root, "beforeend");
   createFormModal.render(root, "beforeend");
 } else {
