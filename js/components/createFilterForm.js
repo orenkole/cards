@@ -54,6 +54,7 @@ SearchContainer.element.addEventListener("submit", (e) => {
   CardsArray.then((data) => {
     const CardsArray = JSON.parse(data);
     console.log(CardsArray);
+    findCards(CardsArray);
   }).catch((err) => {
     console.log(err);
   });
@@ -73,10 +74,18 @@ function findCards(array) {
   if (priority !== "Любая срочность") {
     array.forEach((card) => {
       if (card.content.urgency !== priority) {
-        array.pop(card);
+        array.splice(array.indexOf(card)), 1;
       }
     });
   }
+
+  //   if (!== "Все") {
+  //     array.forEach((card) => {
+  //         if (card.content.urgency !== priority) {
+  //           array.splice(array.indexOf(card)), 1;
+  //         }
+  //       });
+  //   }
 
   //   array.forEach((card) => {
   //       for(let key in card) {
