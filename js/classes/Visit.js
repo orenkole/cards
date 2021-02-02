@@ -3,6 +3,7 @@ import HtmlElement from "./HtmlElement.js";
 import { visitsPalette } from "../components/visitsPalette.js";
 import Div from "./Div.js";
 import { VisitForm } from "./VisitForm.js";
+import Request from "../queries/Request.js";
 
 export class Visit extends HtmlElement {
   constructor(visit) {
@@ -99,14 +100,14 @@ export class Visit extends HtmlElement {
     const shortDescrItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Краткое описание визита: ${this.visit.content.shortDescrItem}`
+      text: `Краткое описание визита: ${this.visit.content.shortDesription}`
     })
     shortDescrItem.render(this.visitPropertiesMore.element, "beforeend");
 
     const urgencyItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Срочность: ${this.visit.content.urgencyItem}`
+      text: `Срочность: ${this.visit.content.urgency}`
     })
     urgencyItem.render(this.visitPropertiesMore.element, "beforeend");
 
@@ -146,14 +147,13 @@ export class Visit extends HtmlElement {
     })
 
     /* Change button */
-    this.ChangeBtn = new Button({
+    this.changeBtn = new Button({
       classes: ["btn", "btn-success", "me-4", "col"],
       text: "Change card"
     })
-    this.ChangeBtn.render(this.changeButtonsContainer.element, "beforeend");
-    this.ChangeBtn.element.addEventListener("click", () => {
-      /* TODO: change card */
-      this.changeCard();
+    this.changeBtn.render(this.changeButtonsContainer.element, "beforeend");
+    this.changeBtn.element.addEventListener("click", () => {
+      this.showEditForm();
     })
 
     /* listen to Edit click */
@@ -168,9 +168,27 @@ export class Visit extends HtmlElement {
   hideChangeButtons() {
     this.changeButtonsContainer.element.remove();
   }
-  changeCard() {
+  showEditForm() {
     this.cardBody.element.innerHTML = "";
-
+    this.createVisitForm.render(this.cardBody.element);
     /* gather form */
+    this.createVisitForm.fillWithValues(this.visit);
+    this.createVisitForm.element.addEventListener("submit", (e) => {
+      this.changeCardInfo(e);
+    });
+  }
+  async changeCardInfo(e) {
+    e.preventDefault();
+    const visitObj = {};
+    const formData = new FormData(e.target);
+    formData.forEach((value, key) => {visitObj[key] = value});
+    console.log("VISIT OJB: ", visitObj);
+    const changeInfoRequest = new Request();
+    const createdVisitResponse = await changeInfoRequest.sendRequest({
+      body: visitObj,
+      path: `${this.visit.id}`,
+      method: "PUT"
+    });
+    visitsPalette.refreshContent();
   }
 }

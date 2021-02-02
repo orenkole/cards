@@ -17,14 +17,14 @@ export class VisitCardiologist extends Visit {
     const massIndexItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Индекс массы: ${this.visit.content.massIndexItem}`
+      text: `Индекс массы: ${this.visit.content.massIndex}`
     })
     massIndexItem.render(this.visitPropertiesMore.element, "beforeend");
 
     const prevDiseasesItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Предыдущие заболевания: ${this.visit.content.prevDiseasesItem}`
+      text: `Предыдущие заболевания: ${this.visit.content.prevDiseases}`
     })
     prevDiseasesItem.render(this.visitPropertiesMore.element, "beforeend");
 

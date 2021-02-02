@@ -3,9 +3,9 @@ import { url } from "./url.js";
 export default class Request {
 	async sendRequest({body, path, method}) {
 		this.token = localStorage.getItem("token")
-		if(method == "POST") {
+		if(method == "POST" || method == "PUT") {
 			this.response = await fetch(`${url}/${path}`, {
-	    	method: "POST",
+	    	method: method,
 	    	headers: {
 	       		'Content-Type': 'application/json',
 	        	'Authorization': `Bearer ${this.token}`

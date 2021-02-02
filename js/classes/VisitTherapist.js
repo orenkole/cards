@@ -10,7 +10,7 @@ export class VisitTherapist extends Visit {
     const ageItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Возраст: ${this.visit.content.ageItem}`
+      text: `Возраст: ${this.visit.content.age}`
     })
     ageItem.render(this.visitPropertiesMore.element, "beforeend");
   }

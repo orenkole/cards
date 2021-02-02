@@ -19,9 +19,14 @@ async function addVisitToPalette(e) {
 	const visitObj = {};
 	const formData = new FormData(e.target);
 	formData.forEach((value, key) => {visitObj[key] = value});
-	console.log("visitObj: ", visitObj);
 	visitsPalette.addVisit(visitObj);
 	// hide form
 	createVisitForm.element.reset();
 	createVisitForm.cancelBtn.element.click();
 }
+
+/* create Cancel button */
+createVisitForm.cancelBtn.element.addEventListener("click", () => {
+	createVisitForm.element.reset();
+})
+createVisitForm.cancelBtn.render(createVisitForm.buttonsRow.element, "beforeend");
