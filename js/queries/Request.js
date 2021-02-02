@@ -14,14 +14,14 @@ export default class Request {
 			});
 			return await this.response.text();
     } else {
-			this.response = await fetch(`${url}/${path}`, {
-	    	method: method,
-	    	headers: {
-	       		'Content-Type': 'application/json',
-	        	'Authorization': `Bearer ${this.token}`
-	    	},
-			});
-			return await this.response.text();
-		}
-	}
+      this.response = await fetch(`${url}/${path}`, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.token}`,
+        },
+      });
+      return await this.response.text();
+    }
+  }
 }

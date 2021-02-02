@@ -106,7 +106,7 @@ const onLoginSuccess = (token) => {
     emailInput.element.value = "";
     passwordInput.element.value = "";
     signUpBtn.element.remove();
-    // // тут я врезаюсь фильтром. Врезаюсь перед visitsPalette - потому что оно где-то рендерится до этого
+    // // here adding filter. Before "visitsPalette" - because it renders somewhere else before.
     SearchContainer.render(visitsPalette.element, "beforebegin");
     createVisitBtn.render(headerContainer.element, "beforeend");
     createFormModal.render(root, "beforeend");
