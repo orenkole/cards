@@ -212,7 +212,7 @@ export class VisitForm extends Form {
 		this.pressureInput = new Input({
 			id: "pressure",
 			classes: ["form-control"],
-			type: "number",
+			type: "text",
 			name: "pressure"
 		})
 		this.pressureInput.render(this.mb3Pressure.element, "beforeend");
@@ -249,10 +249,6 @@ export class VisitForm extends Form {
 			classes: ["btn", "btn-secondary", "col"],
 			attributes: [{"data-bs-dismiss": "modal"}]
 		})
-		this.cancelBtn.element.addEventListener("click", () => {
-			this.element.reset();
-		})
-		this.cancelBtn.render(this.buttonsRow.element, "beforeend");
 	}
 
 	gatherForm() {
@@ -297,5 +293,44 @@ export class VisitForm extends Form {
 				default:
 			}
 		})
+	}
+
+	fillWithValues(visit) {
+		this.doctorSelect.element.value = visit.content.doctor;
+		const changeEvent = new Event("change");
+		this.doctorSelect.element.dispatchEvent(changeEvent);
+
+		switch(visit.content.doctor) {
+			case "кардиолог":
+				this.purposeInput.element.value	= visit.content.purpose;
+				this.shortDescrTextarea.element.value = visit.content.shortDesription;
+				this.urgencySelect.element.value = visit.content.urgency;
+				this.pressureInput.element.value = visit.content.pressure;
+				this.massIndexInput.element.value = visit.content.massIndex;
+				this.prevDiseasesTextarea.element.value = visit.content.prevDiseases;
+				this.ageInput.element.value = visit.content.age;
+				this.nameInput.element.value = visit.content.name;
+				this.secondNameInput.element.value = visit.content.secondName;
+				this.byFatherInput.element.value = visit.content.byFather;
+				break;
+			case "стоматолог":
+				this.purposeInput.element.value	= visit.content.purpose;
+				this.shortDescrTextarea.element.value = visit.content.shortDesription;
+				this.urgencySelect.element.value = visit.content.urgency;
+				this.lastVisitInput.element.value = visit.content.lastVisitDate;
+				this.nameInput.element.value = visit.content.name;
+				this.secondNameInput.element.value = visit.content.secondName;
+				this.byFatherInput.element.value = visit.content.byFather;
+				break;
+			case "терапевт":
+				this.purposeInput.element.value	= visit.content.purpose;
+				this.shortDescrTextarea.element.value = visit.content.shortDesription;
+				this.urgencySelect.element.value = visit.content.urgency;
+				this.ageInput.element.value = visit.content.age;
+				this.nameInput.element.value = visit.content.name;
+				this.secondNameInput.element.value = visit.content.secondName;
+				this.byFatherInput.element.value = visit.content.byFather;
+			break;
+		}
 	}
 }

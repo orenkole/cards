@@ -35,7 +35,6 @@ export class VisitsPalette extends HtmlElement {
     const getAllVisitsRequest = new Request()
     const allVisitsJson = await getAllVisitsRequest.sendRequest({path: "", method: "GET"});
     this.allVisits = JSON.parse(allVisitsJson);
-    console.log("ALL VISITS: ", this.allVisits);
   }
 
   async createVisitCards() {
@@ -70,12 +69,10 @@ export class VisitsPalette extends HtmlElement {
   }
 
   async addVisit(visitObj) {
-    console.log("VISIT OBJ: ", visitObj);
     const createVisitRequest = new Request();
     const createdVisitResponse = await createVisitRequest.sendRequest({body: visitObj, path: "/", method: "POST"});
     const createdVisit = JSON.parse(createdVisitResponse);
 
-    console.log("CREATED VISIT PALETTE", typeof createdVisit);
     let visitCard;
     switch(createdVisit.content.doctor) {
       case "кардиолог":

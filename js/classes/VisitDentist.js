@@ -10,7 +10,7 @@ export class VisitDentist extends Visit {
     const lastDateItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Дата последнего визита: ${this.visit.content.lastDateItem}`
+      text: `Дата последнего визита: ${this.visit.content.lastVisitDate}`
     })
     lastDateItem.render(this.visitPropertiesMore.element, "beforeend");
   }

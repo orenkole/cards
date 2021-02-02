@@ -29,7 +29,7 @@ export default class HtmlElement {
     this.element = element;
     return this.element;
   }
-  render(parentElement, appendPosition) {
+  render(parentElement, appendPosition = "beforeend") {
     parentElement.insertAdjacentElement(appendPosition, this.element);
   }
 }
