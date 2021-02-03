@@ -21,7 +21,7 @@ export class VisitsPalette extends HtmlElement {
         "pb-5",
         "mx-auto",
       ],
-      attributes: [{ style: "min-height: 900px" }],
+      attributes: [{ style: "min-height: 500px" }],
     });
     this.allVisits;
     this.visitCards;
@@ -53,8 +53,8 @@ export class VisitsPalette extends HtmlElement {
 
   createVisitCards() {
     this.allVisitsFiltered = findCards(this.allVisits);
-    this.visitCards = this.allVisitsFiltered.map(visit => {
-      switch(visit.content.doctor) {
+    this.visitCards = this.allVisitsFiltered.map((visit) => {
+      switch (visit.content.doctor) {
         case "кардиолог":
           return new VisitCardiologist(visit);
         case "стоматолог":
@@ -68,16 +68,6 @@ export class VisitsPalette extends HtmlElement {
   }
 
   async dragFunction() {
-    // .addEventListener(
-    //   "mousedown",
-    //   function (e) {
-    //     console.log("sss");
-    //     e.stopPropagation();
-    //   },
-    //   false
-    // );
-    // await this.getAllVisits();
-
     let dragContainer = document.getElementsByClassName("visits-palette")[0];
     dragContainer.addEventListener("mouseover", (e) => {
       if (e.target.parentNode.classList.value == "card") {
@@ -88,17 +78,12 @@ export class VisitsPalette extends HtmlElement {
           pos2 = 0,
           pos3 = 0,
           pos4 = 0;
-        // if (document.getElementById(elmnt.id + "header")) {
-        //   // if present, the header is where you move the DIV from:
-        //   document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-        // } else {
-        //   // otherwise, move the DIV from anywhere inside the DIV:
+
         elmnt.onmousedown = dragMouseDown;
-        // }
 
         function dragMouseDown(e) {
           e = e || window.event;
-          // e.preventDefault();
+
           pos3 = e.clientX;
           pos4 = e.clientY;
           document.onmouseup = closeDragElement;

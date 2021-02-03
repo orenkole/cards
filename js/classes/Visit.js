@@ -4,7 +4,6 @@ import { visitsPalette } from "../components/visitsPalette.js";
 import Div from "./Div.js";
 import { VisitForm } from "./VisitForm.js";
 import Request from "../queries/Request.js";
-import Input from "../classes/Input.js";
 
 export class Visit extends HtmlElement {
   constructor(visit) {
@@ -63,13 +62,6 @@ export class Visit extends HtmlElement {
     });
     doctorItem.render(this.visitPropertiesStart.element, "beforeend");
 
-    // this.inputX = new Input({
-    //   id: "emailxxx",
-    //   classes: ["form-controlxx"],
-    //   type: "email",
-    // });
-    // this.inputX.render(this.visitPropertiesStart.element, "beforeend");
-    /* show more */
     this.showMoreBtn = new Button({
       classes: ["btn", "btn-dark", "btn-sm", "mb-3", "mt-3"],
       type: "button",
