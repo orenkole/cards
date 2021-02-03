@@ -6,7 +6,8 @@ import { VisitForm } from "./VisitForm.js";
 
 export class Visit extends HtmlElement {
   constructor(visit) {
-    super({ tagName: "div", classes: ["col"] });
+    // super({ tagName: "div", classes: ["col"] });
+    super({ tagName: "div", classes: ["p-1"] });
     this.createVisitForm = new VisitForm();
     this.visit = visit;
     this.visitPropertiesStart;
@@ -16,7 +17,7 @@ export class Visit extends HtmlElement {
   }
   async addDefaultFields() {
     this.cardElement = new Div({
-      classes: ["card", "position-absolut"],
+      classes: ["card"],
       attributes: [
         {
           style: "width: 240px; min-height: 250px", //// КОЛХОЗ НА ШИРИНУ
@@ -63,7 +64,7 @@ export class Visit extends HtmlElement {
 
     /* show more */
     this.showMoreBtn = new Button({
-      classes: ["btn", "btn-primary", "btn-sm", "mb-3"],
+      classes: ["btn", "btn-dark", "btn-sm", "mb-3"],
       type: "button",
       attributes: [
         { "data-bs-toggle": "collapse" },
@@ -74,11 +75,10 @@ export class Visit extends HtmlElement {
     this.showMoreBtn.element.addEventListener("click", () => {
       this.showLessBtn.element.style.display = "inline-block";
       this.showMoreBtn.element.style.display = "none";
-    
     });
 
     this.showLessBtn = new Button({
-      classes: ["btn", "btn-primary", "btn-sm", "mb-3"],
+      classes: ["btn", "btn-dark", "btn-sm", "mb-3"],
       type: "button",
       attributes: [
         { "data-bs-toggle": "collapse" },
@@ -148,7 +148,7 @@ export class Visit extends HtmlElement {
 
     /* Edit button */
     this.EditBtn = new Button({
-      classes: ["btn", "btn-primary", "mb-3"],
+      classes: ["btn", "btn-dark", "mb-3"],
       text: "Edit",
     });
     this.EditBtn.render(this.moreBlock.element, "beforeend");

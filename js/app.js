@@ -6,15 +6,34 @@ import { visitsPalette } from "./components/visitsPalette.js";
 import { loginModal } from "./components/loginForm.js";
 
 const root = document.querySelector("#root");
+root.style =
+  "background-image: url(../img/header_bg.jpg); background-attachment: fixed; background-size: cover; height: 100vh";
 
 export const headerContainer = new HtmlElement({
   tagName: "div",
-  classes: ["d-flex", "justify-content-between", "container", "pt-4", "mb-5"],
+  classes: [
+    "d-flex",
+    "justify-content-between",
+    "container",
+    "pt-4",
+    "pb-4",
+    "mb-5",
+    "rounded-bottom",
+    "align-items-center",
+    "bg-dark",
+    "bg-gradient",
+  ],
+  // attributes: [
+  //   {
+  //     style: "background-color :black; ",
+  //   },
+  // ],
 });
 headerContainer.render(root, "beforeend");
 const logoElement = new HtmlElement({
   tagName: "span",
-  text: "Logotype",
+  text: "NashaClinica",
+  classes: ["text-light", "text-uppercase", "font-weight-bold", "h3"],
 });
 
 logoElement.render(headerContainer.element, "beforeend");
