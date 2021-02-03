@@ -4,6 +4,8 @@ import { visitsPalette } from "../components/visitsPalette.js";
 import Div from "./Div.js";
 import { VisitForm } from "./VisitForm.js";
 import Request from "../queries/Request.js";
+import Label from "./Label.js";
+import Input from "./Input.js";
 
 export class Visit extends HtmlElement {
   constructor(visit) {
@@ -21,7 +23,7 @@ export class Visit extends HtmlElement {
       classes: ["card"],
     })
 
-    this.cardHeader = new Div({classes: ["card-header"]});
+    this.cardHeader = new Div({classes: ["card-header", "d-flex", "justify-content-between"]});
     this.cardHeader.render(this.cardElement.element, "beforeend");
 
     this.cardElement.render(this.element, "beforeend");
@@ -118,6 +120,33 @@ export class Visit extends HtmlElement {
     this.moreBlock.render(this.cardBody.element, "beforeend");
   }
   addControls() {
+
+
+    /* status checkbox */
+    const checkboxForm = new Div({
+      classes: ["form-check"]
+    })
+    checkboxForm.render(this.cardHeader.element, "beforeend");
+    this.chekckboxInput = new Input({
+      type: "checkbox",
+      value: "",
+      id: "status-checkbox",
+      classes: ["form-check-input"]
+    })
+    this.chekckboxInput.render(checkboxForm.element, "beforeend");
+
+    const checkboxLabel = new Label({
+      classes: ["form-check-label"],
+      for: "status-checkbox",
+      text: "визит окончен"
+    });
+    checkboxLabel.render(checkboxForm.element, "beforeend");
+
+    this.chekckboxInput.element.addEventListener("change", () => {
+      console.log(this.chekckboxInput.element.checked);
+      this.changeCardInfo(this.createVisitForm.element);
+    })
+
     /* Close button */
     this.closeBtn = new Button({
       type: "button",
@@ -174,21 +203,22 @@ export class Visit extends HtmlElement {
     /* gather form */
     this.createVisitForm.fillWithValues(this.visit);
     this.createVisitForm.element.addEventListener("submit", (e) => {
-      this.changeCardInfo(e);
+      e.preventDefault();
+      this.changeCardInfo();
+      visitsPalette.refreshContent();
     });
   }
-  async changeCardInfo(e) {
-    e.preventDefault();
+  async changeCardInfo() {
     const visitObj = {};
-    const formData = new FormData(e.target);
+    const formData = new FormData(this.createVisitForm.element);
     formData.forEach((value, key) => {visitObj[key] = value});
-    console.log("VISIT OJB: ", visitObj);
+    visitObj["status"] = this.chekckboxInput.element.checked ? "finished" : "open";
+    console.log("VISIT OBJ: ", visitObj);
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({
       body: visitObj,
       path: `${this.visit.id}`,
       method: "PUT"
     });
-    visitsPalette.refreshContent();
   }
 }
