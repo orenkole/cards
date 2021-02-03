@@ -7,7 +7,7 @@ import { loginModal } from "./components/loginForm.js";
 
 const root = document.querySelector("#root");
 root.style =
-  "background-image: url(../img/header_bg.jpg); background-attachment: fixed; background-size: cover; height: 100vh";
+  "background-image: url(../img/header_bg.jpg); background-attachment: fixed; background-size: cover; height: 100vh; ";
 
 export const headerContainer = new HtmlElement({
   tagName: "div",

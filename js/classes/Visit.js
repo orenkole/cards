@@ -20,7 +20,7 @@ export class Visit extends HtmlElement {
       classes: ["card"],
       attributes: [
         {
-          style: "width: 240px; min-height: 250px", //// КОЛХОЗ НА ШИРИНУ
+          style: "width: 300px; min-height: 250px;  ", //// КОЛХОЗ НА ШИРИНУ
         },
       ],
     });
@@ -30,12 +30,7 @@ export class Visit extends HtmlElement {
 
     this.cardElement.render(this.element, "beforeend");
     this.cardBody = new Div({
-      classes: [
-        "card-body",
-        "d-flex",
-        "flex-column",
-        "justify-content-between",
-      ],
+      classes: ["card-body", "d-flex", "flex-column", "justify-content-start"],
     });
     this.cardBody.render(this.cardElement.element, "beforeend");
     this.visitPropertiesStart = new HtmlElement({
@@ -64,7 +59,7 @@ export class Visit extends HtmlElement {
 
     /* show more */
     this.showMoreBtn = new Button({
-      classes: ["btn", "btn-dark", "btn-sm", "mb-3"],
+      classes: ["btn", "btn-dark", "btn-sm", "mb-3", "mt-3"],
       type: "button",
       attributes: [
         { "data-bs-toggle": "collapse" },
@@ -75,10 +70,14 @@ export class Visit extends HtmlElement {
     this.showMoreBtn.element.addEventListener("click", () => {
       this.showLessBtn.element.style.display = "inline-block";
       this.showMoreBtn.element.style.display = "none";
+      let x = document.getElementById("moreProperties_" + this.visit.id);
+
+      x.closest(".card").style.position = "absolute";
+      x.closest(".card").style.width = "380px";
     });
 
     this.showLessBtn = new Button({
-      classes: ["btn", "btn-dark", "btn-sm", "mb-3"],
+      classes: ["btn", "btn-dark", "btn-sm", "mb-3", "mt-3"],
       type: "button",
       attributes: [
         { "data-bs-toggle": "collapse" },
@@ -91,11 +90,13 @@ export class Visit extends HtmlElement {
       this.hideChangeButtons();
       this.showMoreBtn.element.style.display = "inline-block";
       this.showLessBtn.element.style.display = "none";
+      let x = document.getElementById("moreProperties_" + this.visit.id);
+      x.closest(".card").style.width = "300px";
     });
 
     this.moreBlock = new Div({
       id: `moreProperties_${this.visit.id}`,
-      classes: ["collapse"],
+      classes: ["collapse", "position-relative"],
     });
 
     this.visitPropertiesMore = new HtmlElement({

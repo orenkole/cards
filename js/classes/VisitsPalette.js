@@ -17,7 +17,7 @@ export class VisitsPalette extends HtmlElement {
         "row",
         // "row-cols-1",
         // "row-cols-md-2", // ломают дрэг
-        "row-cols-5",
+        "row-cols-4",
         "g-5",
         // "d-flex",
         // "flex-wrap",
