@@ -86,7 +86,6 @@ function findCards(array) {
   // перепиши чисто на value
   array.forEach((card) => {
     for (let key in card.content) {
-      console.log(key, card.content[key]);
       if (card.content[key].includes(textData)) {
         if (!result.includes(card)) {
           result.push(card);
