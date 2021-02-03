@@ -51,8 +51,13 @@ SearchContainer.element.addEventListener("submit", (e) => {
 
   CardsArray.then((data) => {
     const CardsArray = JSON.parse(data);
-    console.log(CardsArray);
-    findCards(CardsArray);
+    const result = findCards(CardsArray);
+    //
+    //
+    // тут рендерятся карточки с переменной result
+    //
+    //
+    //
   }).catch((err) => {
     console.log(err);
   });
@@ -83,7 +88,6 @@ function findCards(array) {
 
   console.log(array);
 
-  // перепиши чисто на value
   array.forEach((card) => {
     for (let key in card.content) {
       if (card.content[key].includes(textData)) {
@@ -94,7 +98,7 @@ function findCards(array) {
     }
   });
 
-  console.log(result);
+  return result;
 }
 
 // render Search Form
