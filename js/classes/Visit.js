@@ -16,10 +16,10 @@ export class Visit extends HtmlElement {
   }
   async addDefaultFields() {
     this.cardElement = new Div({
-      classes: ["card", "position-absolute"],
+      classes: ["card", "position-absolut"],
       attributes: [
         {
-          style: "width: 200px; height: 250px", //// КОЛХОЗ НА ШИРИНУ
+          style: "width: 240px; min-height: 250px", //// КОЛХОЗ НА ШИРИНУ
         },
       ],
     });
@@ -29,7 +29,12 @@ export class Visit extends HtmlElement {
 
     this.cardElement.render(this.element, "beforeend");
     this.cardBody = new Div({
-      classes: ["card-body"],
+      classes: [
+        "card-body",
+        "d-flex",
+        "flex-column",
+        "justify-content-between",
+      ],
     });
     this.cardBody.render(this.cardElement.element, "beforeend");
     this.visitPropertiesStart = new HtmlElement({
@@ -69,6 +74,7 @@ export class Visit extends HtmlElement {
     this.showMoreBtn.element.addEventListener("click", () => {
       this.showLessBtn.element.style.display = "inline-block";
       this.showMoreBtn.element.style.display = "none";
+    
     });
 
     this.showLessBtn = new Button({

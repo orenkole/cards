@@ -20,7 +20,7 @@ export class VisitsPalette extends HtmlElement {
         "row-cols-5",
         "g-5",
       ],
-      attributes: [{ style: "height: 550px" }],
+      // attributes: [{ style: "height: 550px" }],
     });
     this.allVisits;
     this.visitCards;
@@ -69,7 +69,7 @@ export class VisitsPalette extends HtmlElement {
     // await this.getAllVisits();
     let dragContainer = document.getElementsByClassName("visits-palette")[0];
     dragContainer.addEventListener("mouseover", (e) => {
-      if (e.target.parentNode.classList.value == "card position-absolute") {
+      if (e.target.parentNode.classList.value == "card position-absolut") {
         dragElement(e.target.parentNode);
       }
       function dragElement(elmnt) {
@@ -102,6 +102,7 @@ export class VisitsPalette extends HtmlElement {
           pos2 = pos4 - e.clientY;
           pos3 = e.clientX;
           pos4 = e.clientY;
+          elmnt.style.position = "absolute";
           elmnt.style.top = elmnt.offsetTop - pos2 + "px";
           elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
         }
