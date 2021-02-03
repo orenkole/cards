@@ -5,6 +5,7 @@ import Select from "../classes/Select.js";
 import Button from "../classes/Button.js";
 import Request from "../queries/Request.js";
 import Form from "../classes/Form.js";
+import { visitsPalette } from "./visitsPalette.js";
 
 export const SearchContainer = new Form({
   classes: ["container"],
@@ -54,8 +55,8 @@ SearchContainer.element.addEventListener("submit", (e) => {
     const result = findCards(CardsArray);
     //
     //
-    // тут рендерятся карточки с переменной result
-    //
+    console.log(result);
+    visitsPalette.applyFilter(result);
     //
     //
   }).catch((err) => {
@@ -63,7 +64,7 @@ SearchContainer.element.addEventListener("submit", (e) => {
   });
 });
 
-function findCards(array) {
+export function findCards(array) {
   const textData = SearchInput.element.value;
   const cardStatus = SearchSelectCartStatus.element.value;
   const priority = SearchSelectPriorityStatus.element.value;
