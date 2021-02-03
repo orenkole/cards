@@ -7,15 +7,29 @@ import { loginModal } from "./components/loginForm.js";
 import { SearchContainer } from "./components/createFilterForm.js";
 
 const root = document.querySelector("#root");
+root.style =
+  "background-image: url(../img/header_bg.jpg); background-attachment: fixed; background-size: cover; height: 100vh; ";
 
 export const headerContainer = new HtmlElement({
   tagName: "div",
-  classes: ["d-flex", "justify-content-between", "container", "pt-4", "mb-5"],
+  classes: [
+    "d-flex",
+    "justify-content-between",
+    "container",
+    "pt-3",
+    "pb-3",
+    "mb-3",
+    "rounded-bottom",
+    "align-items-center",
+    "bg-dark",
+    "bg-gradient",
+  ],
 });
 headerContainer.render(root, "beforeend");
 const logoElement = new HtmlElement({
   tagName: "span",
-  text: "Logotype",
+  text: "NashaClinica",
+  classes: ["text-light", "text-uppercase", "font-weight-bold", "h3"],
 });
 
 logoElement.render(headerContainer.element, "beforeend");
@@ -33,3 +47,4 @@ if (token) {
 }
 
 visitsPalette.render(root, "beforeend");
+visitsPalette.dragFunction();

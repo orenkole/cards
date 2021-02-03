@@ -51,6 +51,7 @@ const emailInput = new Input({
   id: "email",
   classes: ["form-control"],
   type: "email",
+  attributes: [{ required: true }],
 });
 emailInput.render(mb3Email.element, "beforeend");
 
@@ -68,6 +69,7 @@ const passwordInput = new Input({
   id: "password",
   classes: ["form-control"],
   type: "password",
+  attributes: [{ required: true }],
 });
 passwordInput.render(mb3Password.element, "beforeend");
 

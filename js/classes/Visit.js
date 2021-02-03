@@ -9,114 +9,145 @@ import Input from "./Input.js";
 
 export class Visit extends HtmlElement {
   constructor(visit) {
-    super({tagName: "div",
-      classes: ["col"],
-    })
+    super({ tagName: "div", classes: ["p-1"] });
     this.createVisitForm = new VisitForm();
     this.visit = visit;
     this.visitPropertiesStart;
     this.addDefaultFields();
     this.addControls();
+    this.style;
   }
   async addDefaultFields() {
     this.cardElement = new Div({
       classes: ["card"],
-    })
+      attributes: [
+        {
+          style: "width: 300px; min-height: 250px;  ", //// КОЛХОЗ НА ШИРИНУ
+        },
+      ],
+    });
 
     this.cardHeader = new Div({classes: ["card-header", "d-flex", "justify-content-between"]});
     this.cardHeader.render(this.cardElement.element, "beforeend");
 
     this.cardElement.render(this.element, "beforeend");
     this.cardBody = new Div({
-      classes: ["card-body"]
-    })
+      classes: [
+        "card-body",
+        "d-flex",
+        "flex-column",
+        "justify-content-between",
+      ],
+    });
     this.cardBody.render(this.cardElement.element, "beforeend");
     this.visitPropertiesStart = new HtmlElement({
       tagName: "ul",
-      classes: ["list-group", "mb-3"],
-      attributes: [{
-        "style": "list-style: none;"
-      }]
-    })
+      classes: ["list-group", "mb-1"],
+      attributes: [
+        {
+          style: "list-style: none;",
+        },
+      ],
+    });
 
     const nameItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Имя пациента: ${this.visit.content.name} ${this.visit.content.secondName} ${this.visit.content.byFather}`
-    })
+      text: `Имя пациента: ${this.visit.content.name} ${this.visit.content.secondName} ${this.visit.content.byFather}`,
+    });
     nameItem.render(this.visitPropertiesStart.element, "beforeend");
 
     const doctorItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Врач: ${this.visit.content.doctor}`
-    })
+      text: `Врач: ${this.visit.content.doctor}`,
+    });
     doctorItem.render(this.visitPropertiesStart.element, "beforeend");
 
-
+    // this.inputX = new Input({
+    //   id: "emailxxx",
+    //   classes: ["form-controlxx"],
+    //   type: "email",
+    // });
+    // this.inputX.render(this.visitPropertiesStart.element, "beforeend");
     /* show more */
     this.showMoreBtn = new Button({
-      classes: ["btn", "btn-primary", "btn-sm", "mb-3"],
+      classes: ["btn", "btn-dark", "btn-sm", "mb-3", "mt-3"],
       type: "button",
-      attributes: [{"data-bs-toggle": "collapse"}, {"data-bs-target": `#moreProperties_${this.visit.id}`}],
-      text: "Show more"
-    })
+      attributes: [
+        { "data-bs-toggle": "collapse" },
+        { "data-bs-target": `#moreProperties_${this.visit.id}` },
+      ],
+      text: "Show more",
+    });
     this.showMoreBtn.element.addEventListener("click", () => {
       this.showLessBtn.element.style.display = "inline-block";
       this.showMoreBtn.element.style.display = "none";
-    })
+      let x = document.getElementById("moreProperties_" + this.visit.id);
+
+      x.closest(".card").style.position = "absolute";
+      x.closest(".card").style.width = "380px";
+    });
 
     this.showLessBtn = new Button({
-      classes: ["btn", "btn-primary", "btn-sm", "mb-3"],
+      classes: ["btn", "btn-dark", "btn-sm", "mb-3", "mt-3"],
       type: "button",
-      attributes: [{"data-bs-toggle": "collapse"}, {"data-bs-target": `#moreProperties_${this.visit.id}`}],
-      text: "Show less"
-    })
+      attributes: [
+        { "data-bs-toggle": "collapse" },
+        { "data-bs-target": `#moreProperties_${this.visit.id}` },
+      ],
+      text: "Show less",
+    });
     this.showLessBtn.element.style.display = "none";
     this.showLessBtn.element.addEventListener("click", () => {
       this.hideChangeButtons();
       this.showMoreBtn.element.style.display = "inline-block";
       this.showLessBtn.element.style.display = "none";
-    })
+      let x = document.getElementById("moreProperties_" + this.visit.id);
+      x.closest(".card").style.width = "300px";
+    });
 
     this.moreBlock = new Div({
       id: `moreProperties_${this.visit.id}`,
-      classes: ["collapse"]
+      classes: ["collapse", "position-relative"],
     });
 
     this.visitPropertiesMore = new HtmlElement({
       tagName: "ul",
-      classes: ["list-group", "mb-3"],
-      attributes: [{
-        "style": "list-style: none;"
-      }],
-    })
+      classes: ["list-group", "mb-1"],
+      attributes: [
+        {
+          style: "list-style: none;",
+        },
+      ],
+    });
 
     const purposeItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Цель визита: ${this.visit.content.purpose}`
-    })
+      text: `Цель визита: ${this.visit.content.purpose}`,
+      attributes: [{ required: true }],
+    });
     purposeItem.render(this.visitPropertiesMore.element, "beforeend");
 
     const shortDescrItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Краткое описание визита: ${this.visit.content.shortDesription}`
-    })
+      text: `Краткое описание визита: ${this.visit.content.shortDesription}`,
+    });
     shortDescrItem.render(this.visitPropertiesMore.element, "beforeend");
 
     const urgencyItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
-      text: `Срочность: ${this.visit.content.urgency}`
-    })
+      text: `Срочность: ${this.visit.content.urgency}`,
+    });
     urgencyItem.render(this.visitPropertiesMore.element, "beforeend");
 
     this.visitPropertiesStart.render(this.cardBody.element, "beforeend");
     this.visitPropertiesMore.render(this.moreBlock.element, "beforeend");
     this.showMoreBtn.render(this.cardBody.element, "beforeend");
-    this.showLessBtn.render(this.cardBody.element, "beforeend")
+    this.showLessBtn.render(this.cardBody.element, "beforeend");
     this.moreBlock.render(this.cardBody.element, "beforeend");
   }
   addControls() {
@@ -143,52 +174,51 @@ export class Visit extends HtmlElement {
     checkboxLabel.render(checkboxForm.element, "beforeend");
 
     this.chekckboxInput.element.addEventListener("change", () => {
-      console.log(this.chekckboxInput.element.checked);
       this.changeCardInfo(this.createVisitForm.element);
     })
 
     /* Close button */
     this.closeBtn = new Button({
       type: "button",
-      classes: ["btn-close", "float-end"]
-    })
-    this.closeBtn.render(this.cardHeader.element, "beforeend")
+      classes: ["btn-close", "float-end"],
+    });
+    this.closeBtn.render(this.cardHeader.element, "beforeend");
     this.closeBtn.element.addEventListener("click", () => {
-      visitsPalette.removeVisit(this)
-    })
+      visitsPalette.removeVisit(this);
+    });
 
     /* Edit button */
     this.EditBtn = new Button({
-      classes: ["btn", "btn-primary", "mb-3"],
-      text: "Edit"
-    })
+      classes: ["btn", "btn-dark", "mb-3"],
+      text: "Edit",
+    });
     this.EditBtn.render(this.moreBlock.element, "beforeend");
-    this.changeButtonsContainer = new Div({classes: ["d-md-block"]});
+    this.changeButtonsContainer = new Div({ classes: ["d-md-block"] });
 
     /* Delete button */
     this.deleteBtn = new Button({
       classes: ["btn", "btn-danger", "me-4", "col"],
-      text: "Delete"
-    })
+      text: "Delete",
+    });
     this.deleteBtn.render(this.changeButtonsContainer.element, "beforeend");
     this.deleteBtn.element.addEventListener("click", () => {
-      visitsPalette.removeVisit(this)
-    })
+      visitsPalette.removeVisit(this);
+    });
 
     /* Change button */
     this.changeBtn = new Button({
       classes: ["btn", "btn-success", "me-4", "col"],
-      text: "Change card"
-    })
+      text: "Change card",
+    });
     this.changeBtn.render(this.changeButtonsContainer.element, "beforeend");
     this.changeBtn.element.addEventListener("click", () => {
       this.showEditForm();
-    })
+    });
 
     /* listen to Edit click */
     this.EditBtn.element.addEventListener("click", () => {
       this.showChangeButtons();
-    })
+    });
   }
   showChangeButtons() {
     /* render Change and Delete buttons container */
@@ -213,12 +243,12 @@ export class Visit extends HtmlElement {
     const formData = new FormData(this.createVisitForm.element);
     formData.forEach((value, key) => {visitObj[key] = value});
     visitObj["status"] = this.chekckboxInput.element.checked ? "finished" : "open";
-    console.log("VISIT OBJ: ", visitObj);
+    console.log(visitObj);
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({
       body: visitObj,
       path: `${this.visit.id}`,
-      method: "PUT"
+      method: "PUT",
     });
   }
 }

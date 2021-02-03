@@ -7,19 +7,29 @@ import { VisitTherapist } from "./VisitTherapist.js";
 import Request from "../queries/Request.js";
 import { findCards } from "../components/createFilterForm.js";
 
+let zindex = 1;
 export class VisitsPalette extends HtmlElement {
   constructor() {
     super({
       tagName: "div",
-      classes: ["visits-palette", "container", "row", "row-cols-1", "row-cols-md-2", "row-cols-xl-3", "g-4"]
-    })
+      classes: [
+        "visits-palette",
+        "container",
+        "row",
+        "row-cols-4",
+        "g-5",
+        "pb-5",
+        "mx-auto",
+      ],
+      attributes: [{ style: "min-height: 900px" }],
+    });
     this.allVisits;
     this.visitCards;
     this.noVisitsEl = new Div({
       classes: ["no-visits"],
-      text: "No items have been added"
+      text: "No items have been added",
     });
-    if(localStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
       this.refreshContent();
     }
   }
@@ -33,8 +43,11 @@ export class VisitsPalette extends HtmlElement {
   }
 
   async getAllVisits() {
-    const getAllVisitsRequest = new Request()
-    const allVisitsJson = await getAllVisitsRequest.sendRequest({path: "", method: "GET"});
+    const getAllVisitsRequest = new Request();
+    const allVisitsJson = await getAllVisitsRequest.sendRequest({
+      path: "",
+      method: "GET",
+    });
     this.allVisits = JSON.parse(allVisitsJson);
   }
 
@@ -54,16 +67,74 @@ export class VisitsPalette extends HtmlElement {
     });
   }
 
+  async dragFunction() {
+    // .addEventListener(
+    //   "mousedown",
+    //   function (e) {
+    //     console.log("sss");
+    //     e.stopPropagation();
+    //   },
+    //   false
+    // );
+    // await this.getAllVisits();
+
+    let dragContainer = document.getElementsByClassName("visits-palette")[0];
+    dragContainer.addEventListener("mouseover", (e) => {
+      if (e.target.parentNode.classList.value == "card") {
+        dragElement(e.target.parentNode);
+      }
+      function dragElement(elmnt) {
+        var pos1 = 0,
+          pos2 = 0,
+          pos3 = 0,
+          pos4 = 0;
+        // if (document.getElementById(elmnt.id + "header")) {
+        //   // if present, the header is where you move the DIV from:
+        //   document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        // } else {
+        //   // otherwise, move the DIV from anywhere inside the DIV:
+        elmnt.onmousedown = dragMouseDown;
+        // }
+
+        function dragMouseDown(e) {
+          e = e || window.event;
+          // e.preventDefault();
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.onmouseup = closeDragElement;
+          document.onmousemove = elementDrag;
+          elmnt.style.zIndex = zindex++;
+        }
+
+        function elementDrag(e) {
+          e = e || window.event;
+          e.preventDefault();
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          elmnt.style.position = "absolute";
+          elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+          elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        }
+
+        function closeDragElement() {
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
+      }
+    });
+  }
   renderCards() {
-    if(this.visitCards.length) {
-      this.visitCards.forEach(visitCard => {
+    if (this.visitCards.length) {
+      this.visitCards.forEach((visitCard) => {
         visitCard.render(this.element, "beforeend");
-      })
+      });
     }
   }
 
   renderNoCardsCheck() {
-    if(this.visitCards.length) {
+    if (this.visitCards.length) {
       this.noVisitsEl.element.remove();
     } else {
       this.noVisitsEl.render(this.element, "beforeend");
@@ -72,11 +143,15 @@ export class VisitsPalette extends HtmlElement {
 
   async addVisit(visitObj) {
     const createVisitRequest = new Request();
-    const createdVisitResponse = await createVisitRequest.sendRequest({body: visitObj, path: "/", method: "POST"});
+    const createdVisitResponse = await createVisitRequest.sendRequest({
+      body: visitObj,
+      path: "/",
+      method: "POST",
+    });
     const createdVisit = JSON.parse(createdVisitResponse);
 
     let visitCard;
-    switch(createdVisit.content.doctor) {
+    switch (createdVisit.content.doctor) {
       case "кардиолог":
         visitCard = new VisitCardiologist(createdVisit);
         break;
@@ -95,8 +170,11 @@ export class VisitsPalette extends HtmlElement {
   async removeVisit(card) {
     // delete from database
     const deleteCard = new Request();
-    const deleteResponse = await deleteCard.sendRequest({path: `${card.visit.id}`, method: "DELETE"});
-    if(deleteResponse == "") {
+    const deleteResponse = await deleteCard.sendRequest({
+      path: `${card.visit.id}`,
+      method: "DELETE",
+    });
+    if (deleteResponse == "") {
       card.element.remove();
     }
     this.refreshContent();
