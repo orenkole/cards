@@ -5,6 +5,7 @@ import Select from "../classes/Select.js";
 import Button from "../classes/Button.js";
 import Request from "../queries/Request.js";
 import Form from "../classes/Form.js";
+import { visitsPalette } from "./visitsPalette.js";
 
 export const SearchContainer = new Form({
   classes: ["container"],
@@ -49,27 +50,24 @@ SearchContainer.element.addEventListener("submit", (e) => {
     method: "GET",
   });
 
-  //   console.log(SearchInput.element.value);
-
   CardsArray.then((data) => {
     const CardsArray = JSON.parse(data);
-    console.log(CardsArray);
-    findCards(CardsArray);
+    const result = findCards(CardsArray);
+    //
+    //
+    console.log(result);
+    visitsPalette.applyFilter(result);
+    //
+    //
   }).catch((err) => {
     console.log(err);
   });
-
-  //   SearchInput.values;
 });
 
-function findCards(array) {
+export function findCards(array) {
   const textData = SearchInput.element.value;
   const cardStatus = SearchSelectCartStatus.element.value;
   const priority = SearchSelectPriorityStatus.element.value;
-
-  // if (cardStatus !== "All") {
-  //     let array = array
-  // }
 
   if (priority !== "Любая срочность") {
     array.forEach((card) => {
@@ -79,19 +77,29 @@ function findCards(array) {
     });
   }
 
-  //   if (!== "Все") {
+  //   if (-------- !== "Все") {
   //     array.forEach((card) => {
-  //         if (card.content.urgency !== priority) {
+  //         if (card.content.------- !== cardStatus) {
   //           array.splice(array.indexOf(card)), 1;
   //         }
   //       });
   //   }
 
-  //   array.forEach((card) => {
-  //       for(let key in card) {
+  const result = [];
 
-  //       }
-  //   });
+  console.log(array);
+
+  array.forEach((card) => {
+    for (let key in card.content) {
+      if (card.content[key].includes(textData)) {
+        if (!result.includes(card)) {
+          result.push(card);
+        }
+      }
+    }
+  });
+
+  return result;
 }
 
 // render Search Form

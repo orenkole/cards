@@ -5,6 +5,7 @@ import { VisitCardiologist } from "./VisitCardiologist.js";
 import { VisitDentist } from "./VisitDentist.js";
 import { VisitTherapist } from "./VisitTherapist.js";
 import Request from "../queries/Request.js";
+import { findCards } from "../components/createFilterForm.js";
 
 let zindex = 1;
 export class VisitsPalette extends HtmlElement {
@@ -36,7 +37,7 @@ export class VisitsPalette extends HtmlElement {
   async refreshContent() {
     this.element.innerHTML = "";
     await this.getAllVisits();
-    await this.createVisitCards();
+    this.createVisitCards();
     this.renderNoCardsCheck();
     this.renderCards();
   }
@@ -50,9 +51,10 @@ export class VisitsPalette extends HtmlElement {
     this.allVisits = JSON.parse(allVisitsJson);
   }
 
-  async createVisitCards() {
-    this.visitCards = await this.allVisits.map((visit) => {
-      switch (visit.content.doctor) {
+  createVisitCards() {
+    this.allVisitsFiltered = findCards(this.allVisits);
+    this.visitCards = this.allVisitsFiltered.map(visit => {
+      switch(visit.content.doctor) {
         case "кардиолог":
           return new VisitCardiologist(visit);
         case "стоматолог":
@@ -176,5 +178,13 @@ export class VisitsPalette extends HtmlElement {
       card.element.remove();
     }
     this.refreshContent();
+  }
+
+  applyFilter(filteredVisits) {
+    this.element.innerHTML = "";
+    this.allVisits = filteredVisits;
+    this.createVisitCards();
+    this.renderNoCardsCheck();
+    this.renderCards();
   }
 }
