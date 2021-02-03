@@ -7,6 +7,8 @@ import Request from "../queries/Request.js";
 import Label from "./Label.js";
 import Input from "./Input.js";
 
+
+
 export class Visit extends HtmlElement {
   constructor(visit) {
     super({ tagName: "div", classes: ["p-1"] });
@@ -26,7 +28,6 @@ export class Visit extends HtmlElement {
         },
       ],
     });
-
     this.cardHeader = new Div({classes: ["card-header", "d-flex", "justify-content-between"]});
     this.cardHeader.render(this.cardElement.element, "beforeend");
 
@@ -64,13 +65,6 @@ export class Visit extends HtmlElement {
     });
     doctorItem.render(this.visitPropertiesStart.element, "beforeend");
 
-    // this.inputX = new Input({
-    //   id: "emailxxx",
-    //   classes: ["form-controlxx"],
-    //   type: "email",
-    // });
-    // this.inputX.render(this.visitPropertiesStart.element, "beforeend");
-    /* show more */
     this.showMoreBtn = new Button({
       classes: ["btn", "btn-dark", "btn-sm", "mb-3", "mt-3"],
       type: "button",
@@ -83,10 +77,12 @@ export class Visit extends HtmlElement {
     this.showMoreBtn.element.addEventListener("click", () => {
       this.showLessBtn.element.style.display = "inline-block";
       this.showMoreBtn.element.style.display = "none";
-      let x = document.getElementById("moreProperties_" + this.visit.id);
+      let showMoreWiden = document.getElementById(
+        "moreProperties_" + this.visit.id
+      );
 
-      x.closest(".card").style.position = "absolute";
-      x.closest(".card").style.width = "380px";
+      showMoreWiden.closest(".card").style.position = "absolute";
+      showMoreWiden.closest(".card").style.width = "380px";
     });
 
     this.showLessBtn = new Button({
@@ -103,8 +99,10 @@ export class Visit extends HtmlElement {
       this.hideChangeButtons();
       this.showMoreBtn.element.style.display = "inline-block";
       this.showLessBtn.element.style.display = "none";
-      let x = document.getElementById("moreProperties_" + this.visit.id);
-      x.closest(".card").style.width = "300px";
+      let showLessNarrower = document.getElementById(
+        "moreProperties_" + this.visit.id
+      );
+      showLessNarrower.closest(".card").style.width = "300px";
     });
 
     this.moreBlock = new Div({
