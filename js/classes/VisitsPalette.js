@@ -69,7 +69,7 @@ export class VisitsPalette extends HtmlElement {
   async dragFunction() {
     let dragContainer = document.getElementsByClassName("visits-palette")[0];
     dragContainer.addEventListener("mouseover", (e) => {
-      if (e.target.parentNode.classList.value == "card position-absolute") {
+      if (e.target.classList.contains("card-header")) {
         dragElement(e.target.parentNode);
       }
       function dragElement(elmnt) {
@@ -122,11 +122,6 @@ export class VisitsPalette extends HtmlElement {
     console.log(document.getElementsByClassName("card")[0]);
   }
 
-  // async absolute() {
-  //   await renderCards;
-  //   console.log("s");
-  // }
-
   renderNoCardsCheck() {
     if (this.visitCards.length) {
       this.noVisitsEl.element.remove();
@@ -137,6 +132,7 @@ export class VisitsPalette extends HtmlElement {
 
   async addVisit(visitObj) {
     const createVisitRequest = new Request();
+    visitObj["status"] = "open";
     const createdVisitResponse = await createVisitRequest.sendRequest({
       body: visitObj,
       path: "/",
