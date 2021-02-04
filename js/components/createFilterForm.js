@@ -101,7 +101,7 @@ export function findCards(array) {
 
   array.forEach((card) => {
     for (let key in card.content) {
-      if (card.content[key].includes(textData)) {
+      if (card.content[key].toLowerCase().includes(textData.toLowerCase())) {
         if (!result.includes(card)) {
           result.push(card);
         }
