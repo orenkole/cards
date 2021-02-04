@@ -179,9 +179,9 @@ export class Visit extends HtmlElement {
     });
     checkboxLabel.render(checkboxForm.element, "beforeend");
 
-    // this.chekckboxInput.element.addEventListener("change", () => {
-    //   this.changeCardInfo(this.createVisitForm.element);
-    // })
+    this.chekckboxInput.element.addEventListener("change", () => {
+      this.handleCheckbox();
+    })
 
     /* Close button */
     this.closeBtn = new Button({
@@ -251,6 +251,18 @@ export class Visit extends HtmlElement {
     // visitObj["status"] = this.chekckboxInput.element.checked ? "finished" : "open";
     console.log("VISIT OBJ: ", visitObj);
     console.log("VISIT: ", this.visit);
+    const changeInfoRequest = new Request();
+    const createdVisitResponse = await changeInfoRequest.sendRequest({
+      body: visitObj,
+      path: `${this.visit.id}`,
+      method: "PUT",
+    });
+  }
+  
+  async handleCheckbox() {
+    const visitObj = this.visit.content;
+    visitObj["status"] = this.chekckboxInput.element.checked ? "finished" : "open";
+    console.log(this.visit);
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({
       body: visitObj,
