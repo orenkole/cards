@@ -72,7 +72,10 @@ export class VisitsPalette extends HtmlElement {
   async dragFunction() {
     let dragContainer = visitsPalette.element;
     dragContainer.addEventListener("mouseover", (e) => {
-      if (e.target.parentNode.classList.value == "card position-absolute") {
+      if (
+        // e.target.classList.value == "card-header d-flex justify-content-between"
+        e.target.parentNode.classList.value == "card position-absolute"
+      ) {
         dragElement(e.target.parentNode);
       }
       function dragElement(elmnt) {
