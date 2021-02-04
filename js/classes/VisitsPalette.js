@@ -22,7 +22,6 @@ export class VisitsPalette extends HtmlElement {
         "pb-5",
         "mx-auto",
       ],
-      attributes: [{ style: "min-height: 600px" }],
     });
     this.allVisits;
     this.visitCards;
