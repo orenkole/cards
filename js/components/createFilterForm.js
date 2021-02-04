@@ -66,8 +66,10 @@ SearchContainer.element.addEventListener("submit", (e) => {
 
 export function findCards(array) {
   const textData = SearchInput.element.value;
-  const cardStatus = SearchSelectCartStatus.element.value;
+  let cardStatus = SearchSelectCartStatus.element.value;
   const priority = SearchSelectPriorityStatus.element.value;
+
+  console.log(array);
 
   if (priority !== "Любая срочность") {
     array.forEach((card) => {
@@ -77,17 +79,23 @@ export function findCards(array) {
     });
   }
 
-  //   if (-------- !== "Все") {
-  //     array.forEach((card) => {
-  //         if (card.content.------- !== cardStatus) {
-  //           array.splice(array.indexOf(card)), 1;
-  //         }
-  //       });
-  //   }
+  if (cardStatus !== "Все") {
+    // status mutation
+    if (cardStatus === "Открытые") {
+      cardStatus = "open";
+    } else {
+      cardStatus = "finished";
+    }
+
+    array.forEach((card) => {
+      console.log(card);
+      if (card.content.status !== cardStatus) {
+        array.splice(array.indexOf(card)), 1;
+      }
+    });
+  }
 
   const result = [];
-
-  console.log(array);
 
   array.forEach((card) => {
     for (let key in card.content) {
