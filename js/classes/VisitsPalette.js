@@ -6,6 +6,7 @@ import { VisitDentist } from "./VisitDentist.js";
 import { VisitTherapist } from "./VisitTherapist.js";
 import Request from "../queries/Request.js";
 import { findCards } from "../components/createFilterForm.js";
+import { visitsPalette } from "../components/visitsPalette.js";
 
 let zindex = 1;
 export class VisitsPalette extends HtmlElement {
@@ -30,6 +31,8 @@ export class VisitsPalette extends HtmlElement {
     });
     if (localStorage.getItem("token")) {
       this.refreshContent();
+    } else {
+      this.noVisitsEl.render(this.element, "beforeend");
     }
   }
 
@@ -67,13 +70,13 @@ export class VisitsPalette extends HtmlElement {
   }
 
   async dragFunction() {
-    let dragContainer = document.getElementsByClassName("visits-palette")[0];
+    let dragContainer = visitsPalette.element;
     dragContainer.addEventListener("mouseover", (e) => {
       if (e.target.classList.contains("card-header")) {
         dragElement(e.target.parentNode);
       }
       function dragElement(elmnt) {
-        var pos1 = 0,
+        let pos1 = 0,
           pos2 = 0,
           pos3 = 0,
           pos4 = 0;
