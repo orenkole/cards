@@ -21,7 +21,7 @@ export class VisitsPalette extends HtmlElement {
         "pb-5",
         "mx-auto",
       ],
-      attributes: [{ style: "min-height: 500px" }],
+      attributes: [{ style: "min-height: 600px" }],
     });
     this.allVisits;
     this.visitCards;
@@ -70,7 +70,7 @@ export class VisitsPalette extends HtmlElement {
   async dragFunction() {
     let dragContainer = document.getElementsByClassName("visits-palette")[0];
     dragContainer.addEventListener("mouseover", (e) => {
-      if (e.target.parentNode.classList.value == "card") {
+      if (e.target.parentNode.classList.value == "card position-absolute") {
         dragElement(e.target.parentNode);
       }
       function dragElement(elmnt) {
@@ -112,11 +112,21 @@ export class VisitsPalette extends HtmlElement {
   }
   renderCards() {
     if (this.visitCards.length) {
-      this.visitCards.forEach((visitCard) => {
+      this.visitCards.forEach((visitCard, i) => {
         visitCard.render(this.element, "beforeend");
+        document
+          .getElementsByClassName("card")
+          [i].classList.add("position-absolute");
       });
     }
+
+    console.log(document.getElementsByClassName("card")[0]);
   }
+
+  // async absolute() {
+  //   await renderCards;
+  //   console.log("s");
+  // }
 
   renderNoCardsCheck() {
     if (this.visitCards.length) {
