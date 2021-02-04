@@ -248,15 +248,13 @@ export class Visit extends HtmlElement {
     const visitObj = {};
     const formData = new FormData(this.createVisitForm.element);
     formData.forEach((value, key) => {visitObj[key] = value});
-    // visitObj["status"] = this.chekckboxInput.element.checked ? "finished" : "open";
-    console.log("VISIT OBJ: ", visitObj);
-    console.log("VISIT: ", this.visit);
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({
       body: visitObj,
       path: `${this.visit.id}`,
       method: "PUT",
     });
+    visitsPalette.refreshContent();
   }
 
   async handleCheckbox() {
