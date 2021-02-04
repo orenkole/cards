@@ -258,7 +258,7 @@ export class Visit extends HtmlElement {
       method: "PUT",
     });
   }
-  
+
   async handleCheckbox() {
     const visitObj = this.visit.content;
     visitObj["status"] = this.chekckboxInput.element.checked ? "finished" : "open";
