@@ -52,10 +52,12 @@ SearchContainer.element.addEventListener("submit", (e) => {
 
   CardsArray.then((data) => {
     const CardsArray = JSON.parse(data);
+
     const result = findCards(CardsArray);
-    //
-    //
     console.log(result);
+
+    //
+    //
     visitsPalette.applyFilter(result);
     //
     //
