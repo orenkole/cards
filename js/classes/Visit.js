@@ -7,7 +7,15 @@ import Request from "../queries/Request.js";
 
 export class Visit extends HtmlElement {
   constructor(visit) {
-    super({ tagName: "div", classes: ["p-1"] });
+    super({
+      tagName: "div",
+      classes: ["p-1"],
+      attributes: [
+        {
+          style: "height: 250px",
+        },
+      ],
+    });
     this.createVisitForm = new VisitForm();
     this.visit = visit;
     this.visitPropertiesStart;

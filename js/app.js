@@ -8,7 +8,7 @@ import { SearchContainer } from "./components/createFilterForm.js";
 
 const root = document.querySelector("#root");
 root.style =
-  "background-image: url(../img/header_bg.jpg); background-attachment: fixed; background-size: cover; height: 100vh; ";
+  "background-image: url(../img/header_bg.jpg); background-attachment: fixed; background-size: cover;  padding-bottom: 320px; min-height: 100vh; height: 100% ";
 
 export const headerContainer = new HtmlElement({
   tagName: "div",
