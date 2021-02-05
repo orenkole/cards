@@ -104,7 +104,6 @@ const onLoginSuccess = (token) => {
   if (token === "Incorrect username or password") {
     alert("sign up failure");
   } else {
-    console.log(token);
     emailInput.element.value = "";
     passwordInput.element.value = "";
     signUpBtn.element.remove();

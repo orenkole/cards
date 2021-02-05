@@ -27,7 +27,7 @@ export class VisitForm extends Form {
     });
     this.optionDefault = new HtmlElement({
       tagName: "option",
-      attributes: [{ selected: "" }],
+      attributes: [{ selected: "" }, {disabled: ""}],
       text: "Выберите врача",
     });
 

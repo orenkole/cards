@@ -51,6 +51,7 @@ export class VisitsPalette extends HtmlElement {
       method: "GET",
     });
     this.allVisits = JSON.parse(allVisitsJson);
+    console.log("VISITS", this.allVisits);
   }
 
   createVisitCards() {
@@ -125,8 +126,6 @@ export class VisitsPalette extends HtmlElement {
           [i].classList.add("position-absolute");
       });
     }
-
-    console.log(document.getElementsByClassName("card")[0]);
   }
 
   renderNoCardsCheck() {

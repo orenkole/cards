@@ -6,7 +6,7 @@ export default class Select extends HtmlElement {
     attributes = [],
     text = "",
     values = [],
-    name = ""
+    name = "",
   } = {}) {
     super({tagName,
       classes,

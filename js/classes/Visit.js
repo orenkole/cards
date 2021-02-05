@@ -240,7 +240,6 @@ export class Visit extends HtmlElement {
     this.createVisitForm.element.addEventListener("submit", (e) => {
       e.preventDefault();
       this.changeCardInfo();
-      visitsPalette.refreshContent();
     });
   }
   async changeCardInfo() {
@@ -249,13 +248,16 @@ export class Visit extends HtmlElement {
     formData.forEach((value, key) => {
       visitObj[key] = value;
     });
+    visitObj["status"] = this.chekckboxInput.element.checked
+      ? "finished"
+      : "open";
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({
       body: visitObj,
       path: `${this.visit.id}`,
       method: "PUT",
     });
-    visitsPalette.refreshContent();
+    await visitsPalette.refreshContent();
   }
 
   async handleCheckbox() {
@@ -263,7 +265,6 @@ export class Visit extends HtmlElement {
     visitObj["status"] = this.chekckboxInput.element.checked
       ? "finished"
       : "open";
-    console.log(this.visit);
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({
       body: visitObj,
