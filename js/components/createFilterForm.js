@@ -54,8 +54,6 @@ SearchContainer.element.addEventListener("submit", (e) => {
     const CardsArray = JSON.parse(data);
 
     const result = findCards(CardsArray);
-    console.log(result);
-
     //
     //
     visitsPalette.applyFilter(result);
@@ -71,12 +69,11 @@ export function findCards(array) {
   let cardStatus = SearchSelectCartStatus.element.value;
   const priority = SearchSelectPriorityStatus.element.value;
 
-  console.log(array);
-
   if (priority !== "Любая срочность") {
     array.forEach((card) => {
+      console.log(card.content.urgency, priority);
       if (card.content.urgency !== priority) {
-        array.splice(array.indexOf(card)), 1;
+        array.splice(array.indexOf(card), 1);
       }
     });
   }
@@ -90,9 +87,8 @@ export function findCards(array) {
     }
 
     array.forEach((card) => {
-      console.log(card);
       if (card.content.status !== cardStatus) {
-        array.splice(array.indexOf(card)), 1;
+        array.splice(array.indexOf(card), 1);
       }
     });
   }
