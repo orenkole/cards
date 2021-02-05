@@ -20,6 +20,7 @@ export class Visit extends HtmlElement {
     });
     this.createVisitForm = new VisitForm();
     this.visit = visit;
+    console.log("VISIT CARD: ", this.visit);
     this.visitPropertiesStart;
     this.addDefaultFields();
     this.addControls();
@@ -163,12 +164,14 @@ export class Visit extends HtmlElement {
       classes: ["form-check"],
     });
     checkboxForm.render(this.cardHeader.element, "beforeend");
+    this.isCheked = this.visit.content.status == "finished" ? true : false;
     this.chekckboxInput = new Input({
       type: "checkbox",
       value: "",
       id: "status-checkbox",
       classes: ["form-check-input"],
     });
+    this.chekckboxInput.element.checked = this.isCheked
     this.chekckboxInput.render(checkboxForm.element, "beforeend");
 
     const checkboxLabel = new Label({
