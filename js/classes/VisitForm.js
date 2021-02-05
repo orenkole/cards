@@ -148,6 +148,7 @@ export class VisitForm extends Form {
       classes: ["form-control"],
       type: "text",
       name: "byFather",
+      attributes: [{ required: true }],
     });
     this.byFatherInput.render(this.mb3ByFather.element, "beforeend");
 
@@ -163,6 +164,7 @@ export class VisitForm extends Form {
       classes: ["form-control"],
       type: "number",
       name: "age",
+      attributes: [{ required: true }],
     });
     this.ageInput.render(this.mb3Age.element, "beforeend");
 
@@ -177,6 +179,7 @@ export class VisitForm extends Form {
       id: "prev-diseases",
       attributes: [{ style: "height: 100px;" }],
       name: "prevDiseases",
+      attributes: [{ required: true }],
     });
     this.prevDiseasesTextarea.render(this.mb3PrevDiseases.element, "beforeend");
 
@@ -192,6 +195,7 @@ export class VisitForm extends Form {
       classes: ["form-control"],
       type: "number",
       name: "massIndex",
+      attributes: [{ required: true }],
     });
     this.massIndexInput.render(this.mb3MassIndex.element, "beforeend");
 
@@ -207,6 +211,7 @@ export class VisitForm extends Form {
       classes: ["form-control"],
       type: "text",
       name: "pressure",
+      attributes: [{ required: true }],
     });
     this.pressureInput.render(this.mb3Pressure.element, "beforeend");
 

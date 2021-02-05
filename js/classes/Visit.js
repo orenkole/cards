@@ -140,6 +140,7 @@ export class Visit extends HtmlElement {
       tagName: "li",
       classes: ["list-group-item"],
       text: `Краткое описание визита: ${this.visit.content.shortDesription}`,
+      attributes: [{ required: true }],
     });
     shortDescrItem.render(this.visitPropertiesMore.element, "beforeend");
 
@@ -212,7 +213,7 @@ export class Visit extends HtmlElement {
     /* Change button */
     this.changeBtn = new Button({
       classes: ["btn", "btn-success", "me-4", "col"],
-      text: "Исправить",
+      text: "Изменить",
     });
     this.changeBtn.render(this.changeButtonsContainer.element, "beforeend");
     this.changeBtn.element.addEventListener("click", () => {
