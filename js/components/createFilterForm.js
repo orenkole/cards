@@ -71,7 +71,6 @@ export function findCards(array) {
 
   if (priority !== "Любая срочность") {
     array.forEach((card) => {
-      console.log(card.content.urgency, priority);
       if (card.content.urgency !== priority) {
         array.splice(array.indexOf(card), 1);
       }
