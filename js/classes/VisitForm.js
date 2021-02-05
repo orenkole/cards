@@ -230,14 +230,14 @@ export class VisitForm extends Form {
 
     this.submitBtn = new Button({
       type: "submit",
-      text: "Submit",
-      classes: ["btn", "btn-primary", "me-4", "col"],
+      text: "Отправить",
+      classes: ["btn", "btn-success", "me-4", "col"],
     });
     this.submitBtn.render(this.buttonsRow.element, "beforeend");
 
     this.cancelBtn = new Button({
       type: "button",
-      text: "Cancel",
+      text: "Отмена",
       classes: ["btn", "btn-secondary", "col"],
       attributes: [{ "data-bs-dismiss": "modal" }],
     });

@@ -36,9 +36,9 @@ const SearchSelectPriorityStatus = new Select({
 });
 
 const SearchSubmitBtn = new Button({
-  classes: ["btn", "btn-primary"],
+  classes: ["btn", "btn-dark"],
   type: "submit",
-  text: "Search",
+  text: "Поиск",
 });
 
 SearchContainer.element.addEventListener("submit", (e) => {

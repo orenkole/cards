@@ -7,7 +7,8 @@ import { loginModal } from "./components/loginForm.js";
 import { SearchContainer } from "./components/createFilterForm.js";
 
 const root = document.querySelector("#root");
-root.style = "background-image: url(../img/header_bg.jpg); background-attachment: fixed; overflow: auto; position: absolute; width: 100%; background-size: cover;  padding-bottom: 320px; min-height: 100vh; height: 100%;";
+root.style =
+  "background-image: url(../img/header_bg.jpg); background-attachment: fixed; overflow: auto; position: absolute; width: 100%; background-size: cover;  padding-bottom: 320px; min-height: 100vh; height: 100%;";
 
 export const headerContainer = new HtmlElement({
   tagName: "div",
@@ -28,7 +29,7 @@ headerContainer.render(root, "beforeend");
 const logoElement = new HtmlElement({
   tagName: "span",
   text: "NashaClinica",
-  classes: ["text-light", "text-uppercase", "font-weight-bold", "h3"],
+  classes: ["text-light", "text-uppercase", "font-weight-bold", "h3", "mb-0"],
 });
 
 logoElement.render(headerContainer.element, "beforeend");

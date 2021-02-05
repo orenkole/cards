@@ -7,8 +7,6 @@ import Request from "../queries/Request.js";
 import Label from "./Label.js";
 import Input from "./Input.js";
 
-
-
 export class Visit extends HtmlElement {
   constructor(visit) {
     super({
@@ -36,7 +34,9 @@ export class Visit extends HtmlElement {
         },
       ],
     });
-    this.cardHeader = new Div({classes: ["card-header", "d-flex", "justify-content-between"]});
+    this.cardHeader = new Div({
+      classes: ["card-header", "d-flex", "justify-content-between"],
+    });
     this.cardHeader.render(this.cardElement.element, "beforeend");
 
     this.cardElement.render(this.element, "beforeend");
@@ -80,7 +80,7 @@ export class Visit extends HtmlElement {
         { "data-bs-toggle": "collapse" },
         { "data-bs-target": `#moreProperties_${this.visit.id}` },
       ],
-      text: "Show more",
+      text: "Показать больше",
     });
     this.showMoreBtn.element.addEventListener("click", () => {
       this.showLessBtn.element.style.display = "inline-block";
@@ -100,7 +100,7 @@ export class Visit extends HtmlElement {
         { "data-bs-toggle": "collapse" },
         { "data-bs-target": `#moreProperties_${this.visit.id}` },
       ],
-      text: "Show less",
+      text: "Показать меньше",
     });
     this.showLessBtn.element.style.display = "none";
     this.showLessBtn.element.addEventListener("click", () => {
@@ -157,31 +157,29 @@ export class Visit extends HtmlElement {
     this.moreBlock.render(this.cardBody.element, "beforeend");
   }
   addControls() {
-
-
     /* status checkbox */
     const checkboxForm = new Div({
-      classes: ["form-check"]
-    })
+      classes: ["form-check"],
+    });
     checkboxForm.render(this.cardHeader.element, "beforeend");
     this.chekckboxInput = new Input({
       type: "checkbox",
       value: "",
       id: "status-checkbox",
-      classes: ["form-check-input"]
-    })
+      classes: ["form-check-input"],
+    });
     this.chekckboxInput.render(checkboxForm.element, "beforeend");
 
     const checkboxLabel = new Label({
       classes: ["form-check-label"],
       for: "status-checkbox",
-      text: "визит окончен"
+      text: "Визит окончен",
     });
     checkboxLabel.render(checkboxForm.element, "beforeend");
 
     this.chekckboxInput.element.addEventListener("change", () => {
       this.handleCheckbox();
-    })
+    });
 
     /* Close button */
     this.closeBtn = new Button({
@@ -196,7 +194,7 @@ export class Visit extends HtmlElement {
     /* Edit button */
     this.EditBtn = new Button({
       classes: ["btn", "btn-dark", "mb-3"],
-      text: "Edit",
+      text: "Редактировать",
     });
     this.EditBtn.render(this.moreBlock.element, "beforeend");
     this.changeButtonsContainer = new Div({ classes: ["d-md-block"] });
@@ -204,7 +202,7 @@ export class Visit extends HtmlElement {
     /* Delete button */
     this.deleteBtn = new Button({
       classes: ["btn", "btn-danger", "me-4", "col"],
-      text: "Delete",
+      text: "Удалить",
     });
     this.deleteBtn.render(this.changeButtonsContainer.element, "beforeend");
     this.deleteBtn.element.addEventListener("click", () => {
@@ -214,7 +212,7 @@ export class Visit extends HtmlElement {
     /* Change button */
     this.changeBtn = new Button({
       classes: ["btn", "btn-success", "me-4", "col"],
-      text: "Change card",
+      text: "Исправить",
     });
     this.changeBtn.render(this.changeButtonsContainer.element, "beforeend");
     this.changeBtn.element.addEventListener("click", () => {
@@ -247,7 +245,9 @@ export class Visit extends HtmlElement {
   async changeCardInfo() {
     const visitObj = {};
     const formData = new FormData(this.createVisitForm.element);
-    formData.forEach((value, key) => {visitObj[key] = value});
+    formData.forEach((value, key) => {
+      visitObj[key] = value;
+    });
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({
       body: visitObj,
@@ -259,7 +259,9 @@ export class Visit extends HtmlElement {
 
   async handleCheckbox() {
     const visitObj = this.visit.content;
-    visitObj["status"] = this.chekckboxInput.element.checked ? "finished" : "open";
+    visitObj["status"] = this.chekckboxInput.element.checked
+      ? "finished"
+      : "open";
     console.log(this.visit);
     const changeInfoRequest = new Request();
     const createdVisitResponse = await changeInfoRequest.sendRequest({

@@ -26,8 +26,8 @@ export class VisitsPalette extends HtmlElement {
     this.allVisits;
     this.visitCards;
     this.noVisitsEl = new Div({
-      classes: ["no-visits"],
-      text: "No items have been added",
+      classes: ["no-visits", "h4", "container", "col-6", "text-center"],
+      text: "Нет добавленных визитов",
     });
     if (localStorage.getItem("token")) {
       this.refreshContent();
@@ -109,6 +109,10 @@ export class VisitsPalette extends HtmlElement {
           document.onmouseup = null;
           document.onmousemove = null;
         }
+      }
+      if (e.target.tagName == "INPUT") {
+        let blockDrag = e.target.closest(".position-absolute");
+        blockDrag.onmousedown = null;
       }
     });
   }

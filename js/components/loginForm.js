@@ -43,7 +43,7 @@ mb3Email.render(loginForm.element, "beforeend");
 const emailLabel = new Label({
   for: "email",
   classes: ["form-label"],
-  text: "Email address",
+  text: "Имейл",
 });
 emailLabel.render(mb3Email.element, "beforeend");
 
@@ -61,7 +61,7 @@ mb3Password.render(loginForm.element, "beforeend");
 const passwordLabel = new Label({
   for: "password",
   classes: ["form-label"],
-  text: "Password",
+  text: "Пароль",
 });
 passwordLabel.render(mb3Password.element, "beforeend");
 
@@ -75,7 +75,7 @@ passwordInput.render(mb3Password.element, "beforeend");
 
 const submitBtn = new Button({
   type: "submit",
-  text: "Submit",
+  text: "Отправить",
   classes: ["btn", "btn-primary"],
 });
 submitBtn.render(loginForm.element, "beforeend");
