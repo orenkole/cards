@@ -20,7 +20,7 @@ export class Visit extends HtmlElement {
     });
     this.createVisitForm = new VisitForm();
     this.visit = visit;
-    console.log("VISIT CARD: ", this.visit);
+    // console.log("VISIT CARD: ", this.visit);
     this.visitPropertiesStart;
     this.addDefaultFields();
     this.addControls();
@@ -171,7 +171,7 @@ export class Visit extends HtmlElement {
       id: "status-checkbox",
       classes: ["form-check-input"],
     });
-    this.chekckboxInput.element.checked = this.isCheked
+    this.chekckboxInput.element.checked = this.isCheked;
     this.chekckboxInput.render(checkboxForm.element, "beforeend");
 
     const checkboxLabel = new Label({

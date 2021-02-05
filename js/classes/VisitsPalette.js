@@ -51,7 +51,7 @@ export class VisitsPalette extends HtmlElement {
       method: "GET",
     });
     this.allVisits = JSON.parse(allVisitsJson);
-    console.log("VISITS", this.allVisits);
+    // console.log("VISITS", this.allVisits);
   }
 
   createVisitCards() {
