@@ -63,6 +63,11 @@ export class Visit extends HtmlElement {
     const nameItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
+      attributes: [
+        {
+          style: "height: 66px",
+        },
+      ],
       text: `Имя пациента: ${this.visit.content.name} ${this.visit.content.secondName} ${this.visit.content.byFather}`,
     });
     nameItem.render(this.visitPropertiesStart.element, "beforeend");
