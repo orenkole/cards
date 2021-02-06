@@ -11,7 +11,7 @@ export class Visit extends HtmlElement {
   constructor(visit) {
     super({
       tagName: "div",
-      classes: ["p-1"],
+      classes: ["p-1", "d-flex", "justify-content-center", "mb-4"],
       attributes: [
         {
           style: "height: 250px",

@@ -17,9 +17,9 @@ export class VisitsPalette extends HtmlElement {
         "visits-palette",
         "container",
         "row",
-        "row-cols-4",
-        "g-4",
-        "pb-5",
+        "row-cols-1",
+        "row-cols-md-2",
+        "row-cols-xl-3",
         "mx-auto",
       ],
     });
