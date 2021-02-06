@@ -32,7 +32,7 @@ const SearchSelectCartStatus = new Select({
 
 const SearchSelectPriorityStatus = new Select({
   classes: ["form-select", "col-3"],
-  values: ["Любая срочность", "обычная", "приоритетная", "неотложная"],
+  values: ["Любая срочность", "Обычная", "Приоритетная", "Неотложная"],
 });
 
 const SearchSubmitBtn = new Button({

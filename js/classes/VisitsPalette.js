@@ -58,11 +58,11 @@ export class VisitsPalette extends HtmlElement {
     this.allVisitsFiltered = findCards(this.allVisits);
     this.visitCards = this.allVisitsFiltered.map((visit) => {
       switch (visit.content.doctor) {
-        case "кардиолог":
+        case "Кардиолог":
           return new VisitCardiologist(visit);
-        case "стоматолог":
+        case "Стоматолог":
           return new VisitDentist(visit);
-        case "терапевт":
+        case "Терапевт":
           return new VisitTherapist(visit);
         default:
           return new Visit(visit);
@@ -148,13 +148,13 @@ export class VisitsPalette extends HtmlElement {
 
     let visitCard;
     switch (createdVisit.content.doctor) {
-      case "кардиолог":
+      case "Кардиолог":
         visitCard = new VisitCardiologist(createdVisit);
         break;
-      case "стоматолог":
+      case "Стоматолог":
         visitCard = new VisitDentist(createdVisit);
         break;
-      case "терапевт":
+      case "Терапевт":
         visitCard = new VisitTherapist(createdVisit);
         break;
       default:
