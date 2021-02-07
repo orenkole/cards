@@ -11,7 +11,7 @@ export class Visit extends HtmlElement {
   constructor(visit) {
     super({
       tagName: "div",
-      classes: ["p-1"],
+      classes: ["p-1", "d-flex", "justify-content-center", "mb-4"],
       attributes: [
         {
           style: "height: 250px",
@@ -63,6 +63,11 @@ export class Visit extends HtmlElement {
     const nameItem = new HtmlElement({
       tagName: "li",
       classes: ["list-group-item"],
+      attributes: [
+        {
+          style: "height: 66px",
+        },
+      ],
       text: `Имя пациента: ${this.visit.content.name} ${this.visit.content.secondName} ${this.visit.content.byFather}`,
     });
     nameItem.render(this.visitPropertiesStart.element, "beforeend");
@@ -121,7 +126,7 @@ export class Visit extends HtmlElement {
 
     this.visitPropertiesMore = new HtmlElement({
       tagName: "ul",
-      classes: ["list-group", "mb-1"],
+      classes: ["list-group", "mb-4"],
       attributes: [
         {
           style: "list-style: none;",
@@ -201,7 +206,7 @@ export class Visit extends HtmlElement {
       text: "Редактировать",
     });
     this.EditBtn.render(this.moreBlock.element, "beforeend");
-    this.changeButtonsContainer = new Div({ classes: ["d-md-block"] });
+    this.changeButtonsContainer = new Div({ classes: ["d-md-block", "mt-2"] });
 
     /* Delete button */
     this.deleteBtn = new Button({

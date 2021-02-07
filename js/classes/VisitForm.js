@@ -18,7 +18,7 @@ export class VisitForm extends Form {
 
   createVisitFormParts() {
     /* doctor selection field */
-    this.doctors = ["кардиолог", "стоматолог", "терапевт"];
+    this.doctors = ["Кардиолог", "Стоматолог", "Терапевт"];
 
     this.doctorSelect = new Select({
       classes: ["form-select"],
@@ -27,7 +27,7 @@ export class VisitForm extends Form {
     });
     this.optionDefault = new HtmlElement({
       tagName: "option",
-      attributes: [{ selected: "" }, {disabled: ""}],
+      attributes: [{ selected: "" }, { disabled: "" }],
       text: "Выберите врача",
     });
 
@@ -83,18 +83,24 @@ export class VisitForm extends Form {
     });
     this.shortDescrTextarea.render(this.mb3ShortDescr.element, "beforeend");
 
-    this.urgencies = ["обычная", "приоритетная", "неотложная"];
+    this.urgencies = ["Обычная", "Приоритетная", "Неотложная"];
+
+    this.urgencySelectLabel = new Label({
+      for: "urgency",
+      text: "Выберите срочность",
+    });
+    this.urgencySelectLabel.render(this.mb3ShortDescr.element, "beforeend");
 
     this.urgencySelect = new Select({
       classes: ["form-select"],
       name: "urgency",
     });
-    this.urgencyOptionDefault = new HtmlElement({
-      tagName: "option",
-      attributes: [{ selected: "" }],
-      text: "Выберите срочность визита",
-    });
-    this.urgencyOptionDefault.render(this.urgencySelect.element, "beforeend");
+    // this.urgencyOptionDefault = new HtmlElement({
+    //   tagName: "option",
+    //   attributes: [{ selected: "" }],
+    //   text: "Выберите срочность визита",
+    // });
+    // this.urgencyOptionDefault.render(this.urgencySelect.element, "beforeend");
     this.urgencies.forEach((urgency) => {
       const option = new HtmlElement({
         tagName: "option",
@@ -231,7 +237,7 @@ export class VisitForm extends Form {
     this.lastVisitInput.render(this.mb3LastVisit.element, "beforeend");
 
     // control buttons
-    this.buttonsRow = new Div({ classes: ["d-md-block"] });
+    this.buttonsRow = new Div({ classes: ["d-md-block", "mt-4"] });
 
     this.submitBtn = new Button({
       type: "submit",
@@ -254,7 +260,7 @@ export class VisitForm extends Form {
         this.element.removeChild(this.element.lastChild);
       }
       switch (this.doctorSelect.element.value) {
-        case "кардиолог":
+        case "Кардиолог":
           this.mb3Purpose.render(this.element, "beforeend");
           this.mb3ShortDescr.render(this.element, "beforeend");
           this.urgencySelect.render(this.element, "beforeend");
@@ -267,7 +273,7 @@ export class VisitForm extends Form {
           this.mb3ByFather.render(this.element, "beforeend");
           this.buttonsRow.render(this.element, "beforeend");
           break;
-        case "стоматолог":
+        case "Стоматолог":
           this.mb3Purpose.render(this.element, "beforeend");
           this.mb3ShortDescr.render(this.element, "beforeend");
           this.urgencySelect.render(this.element, "beforeend");
@@ -277,7 +283,7 @@ export class VisitForm extends Form {
           this.mb3ByFather.render(this.element, "beforeend");
           this.buttonsRow.render(this.element, "beforeend");
           break;
-        case "терапевт":
+        case "Терапевт":
           this.mb3Purpose.render(this.element, "beforeend");
           this.mb3ShortDescr.render(this.element, "beforeend");
           this.urgencySelect.render(this.element, "beforeend");
@@ -298,7 +304,7 @@ export class VisitForm extends Form {
     this.doctorSelect.element.dispatchEvent(changeEvent);
 
     switch (visit.content.doctor) {
-      case "кардиолог":
+      case "Кардиолог":
         this.purposeInput.element.value = visit.content.purpose;
         this.shortDescrTextarea.element.value = visit.content.shortDesription;
         this.urgencySelect.element.value = visit.content.urgency;
@@ -310,7 +316,7 @@ export class VisitForm extends Form {
         this.secondNameInput.element.value = visit.content.secondName;
         this.byFatherInput.element.value = visit.content.byFather;
         break;
-      case "стоматолог":
+      case "Стоматолог":
         this.purposeInput.element.value = visit.content.purpose;
         this.shortDescrTextarea.element.value = visit.content.shortDesription;
         this.urgencySelect.element.value = visit.content.urgency;
@@ -319,7 +325,7 @@ export class VisitForm extends Form {
         this.secondNameInput.element.value = visit.content.secondName;
         this.byFatherInput.element.value = visit.content.byFather;
         break;
-      case "терапевт":
+      case "Терапевт":
         this.purposeInput.element.value = visit.content.purpose;
         this.shortDescrTextarea.element.value = visit.content.shortDesription;
         this.urgencySelect.element.value = visit.content.urgency;

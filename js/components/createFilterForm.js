@@ -19,6 +19,7 @@ const SearchFormWrapper = new Div({
 const SearchInput = new Input({
   type: "text",
   classes: ["form-control", "col-5"],
+  placeholder: "Ведите текст, который ищем"
 });
 
 const SearchSelectCartStatus = new Select({
@@ -32,7 +33,7 @@ const SearchSelectCartStatus = new Select({
 
 const SearchSelectPriorityStatus = new Select({
   classes: ["form-select", "col-3"],
-  values: ["Любая срочность", "обычная", "приоритетная", "неотложная"],
+  values: ["Любая срочность", "Обычная", "Приоритетная", "Неотложная"],
 });
 
 const SearchSubmitBtn = new Button({

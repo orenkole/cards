@@ -23,10 +23,18 @@ async function addVisitToPalette(e) {
 	// hide form
 	createVisitForm.element.reset();
 	createVisitForm.cancelBtn.element.click();
+	resetForm();
 }
 
 /* create Cancel button */
 createVisitForm.cancelBtn.element.addEventListener("click", () => {
 	createVisitForm.element.reset();
+	resetForm();
 })
 createVisitForm.cancelBtn.render(createVisitForm.buttonsRow.element, "beforeend");
+
+function resetForm() {
+	while (createVisitForm.element.children.length > 1) {
+		createVisitForm.element.removeChild(createVisitForm.element.lastChild);
+	}
+}

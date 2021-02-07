@@ -17,9 +17,9 @@ export class VisitsPalette extends HtmlElement {
         "visits-palette",
         "container",
         "row",
-        "row-cols-4",
-        "g-4",
-        "pb-5",
+        "row-cols-1",
+        "row-cols-md-2",
+        "row-cols-xl-3",
         "mx-auto",
       ],
     });
@@ -51,18 +51,17 @@ export class VisitsPalette extends HtmlElement {
       method: "GET",
     });
     this.allVisits = JSON.parse(allVisitsJson);
-    // console.log("VISITS", this.allVisits);
   }
 
   createVisitCards() {
     this.allVisitsFiltered = findCards(this.allVisits);
     this.visitCards = this.allVisitsFiltered.map((visit) => {
       switch (visit.content.doctor) {
-        case "кардиолог":
+        case "Кардиолог":
           return new VisitCardiologist(visit);
-        case "стоматолог":
+        case "Стоматолог":
           return new VisitDentist(visit);
-        case "терапевт":
+        case "Терапевт":
           return new VisitTherapist(visit);
         default:
           return new Visit(visit);
@@ -148,13 +147,13 @@ export class VisitsPalette extends HtmlElement {
 
     let visitCard;
     switch (createdVisit.content.doctor) {
-      case "кардиолог":
+      case "Кардиолог":
         visitCard = new VisitCardiologist(createdVisit);
         break;
-      case "стоматолог":
+      case "Стоматолог":
         visitCard = new VisitDentist(createdVisit);
         break;
-      case "терапевт":
+      case "Терапевт":
         visitCard = new VisitTherapist(createdVisit);
         break;
       default:
