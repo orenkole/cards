@@ -8,7 +8,7 @@ import { SearchContainer } from "./components/createFilterForm.js";
 
 const root = document.querySelector("#root");
 root.style =
-  "background-image: url(./cards/img/header_bg.jpg); background-attachment: fixed; overflow: auto; position: absolute; width: 100%; background-size: cover;  padding-bottom: 320px; min-height: 100vh; height: 100%;";
+  "background-image: url(./img/header_bg.jpg); background-attachment: fixed; overflow: auto; position: absolute; width: 100%; background-size: cover;  padding-bottom: 320px; min-height: 100vh; height: 100%;";
 
 export const headerContainer = new HtmlElement({
   tagName: "div",
@@ -23,13 +23,33 @@ export const headerContainer = new HtmlElement({
     "align-items-center",
     "bg-dark",
     "bg-gradient",
+    "position-fixed",
+    "translate-middle-x",
+    "start-50",
+  ],
+  attributes: [
+    {
+      style: "z-index: 9999",
+    },
   ],
 });
 headerContainer.render(root, "beforeend");
 const logoElement = new HtmlElement({
-  tagName: "span",
+  tagName: "a",
   text: "NashaClinica",
-  classes: ["text-light", "text-uppercase", "font-weight-bold", "h3", "mb-0"],
+  classes: [
+    "text-light",
+    "text-uppercase",
+    "font-weight-bold",
+    "h3",
+    "mb-0",
+    "text-decoration-none",
+  ],
+  attributes: [
+    {
+      href: "index.html",
+    },
+  ],
 });
 
 logoElement.render(headerContainer.element, "beforeend");

@@ -13,13 +13,13 @@ export const SearchContainer = new Form({
 });
 
 const SearchFormWrapper = new Div({
-  classes: ["input-group", "mb-3"],
+  classes: ["input-group", "mb-3", "mt-5", "pt-5"],
 });
 
 const SearchInput = new Input({
   type: "text",
   classes: ["form-control", "col-5"],
-  placeholder: "Ведите текст, который ищем"
+  placeholder: "Введите текст, который ищем",
 });
 
 const SearchSelectCartStatus = new Select({
