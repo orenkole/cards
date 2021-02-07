@@ -237,7 +237,7 @@ export class VisitForm extends Form {
     this.lastVisitInput.render(this.mb3LastVisit.element, "beforeend");
 
     // control buttons
-    this.buttonsRow = new Div({ classes: ["d-md-block"] });
+    this.buttonsRow = new Div({ classes: ["d-md-block", "mt-4"] });
 
     this.submitBtn = new Button({
       type: "submit",

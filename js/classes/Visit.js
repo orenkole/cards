@@ -126,7 +126,7 @@ export class Visit extends HtmlElement {
 
     this.visitPropertiesMore = new HtmlElement({
       tagName: "ul",
-      classes: ["list-group", "mb-1"],
+      classes: ["list-group", "mb-4"],
       attributes: [
         {
           style: "list-style: none;",
@@ -206,7 +206,7 @@ export class Visit extends HtmlElement {
       text: "Редактировать",
     });
     this.EditBtn.render(this.moreBlock.element, "beforeend");
-    this.changeButtonsContainer = new Div({ classes: ["d-md-block"] });
+    this.changeButtonsContainer = new Div({ classes: ["d-md-block", "mt-2"] });
 
     /* Delete button */
     this.deleteBtn = new Button({
