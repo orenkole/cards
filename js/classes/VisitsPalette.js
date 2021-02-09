@@ -55,7 +55,7 @@ export class VisitsPalette extends HtmlElement {
   }
 
   createVisitCards() {
-    this.allVisitsFiltered = findCards(this.allVisits);
+    this.allVisitsFiltered = this.allVisits;
     this.visitCards = this.allVisitsFiltered.map((visit) => {
       switch (visit.content.doctor) {
         case "Кардиолог":
