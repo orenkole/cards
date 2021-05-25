@@ -23,4 +23,4 @@
 
     - Уставновка и сборка проекта не требуется.
 
-    - Ссылка на gitpages: https://vladyslav-suhih.github.io/cards/
+    - Ссылка на gitpages: https://orenkole.github.io/cards/
